@@ -2,7 +2,7 @@
 title: "Training Weights Tracker App?"
 layout: post
 date: 2024-11-07 17:54
-image: /assets/images/markdown.jpg
+image: /assets/images/favicon/apple-touch-icon.png
 headerImage: false
 tag:
     - swift

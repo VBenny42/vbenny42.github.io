@@ -2,44 +2,56 @@
 title: About
 layout: page
 ---
+
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-<p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>
+I'm a Software Developer currently based in Trinidad and Tobago.
+I have a passion for learning how things work and I'm always looking for ways to improve my skills and workflows.
+I'm hoping to use this blog to document my journey as a developer and share some of the things I've learned along the way.
+I'm heavily interested in Pokemon, Neovim, and I'm currently learning Go.
+</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>
+I recently graduated from the University of Toronto in June 2024 with a Specialist in Software Engineering and I'm currently searching for Junior Software Developer roles. 
+I have a keen interest in building software that helps people become more efficient, in whatever way possible.
+I have a broad range of school and professional experiences in data manipulation, full-stack web development, dev-ops and server administration.
+I'm always eager to learn about new technologies and how to apply them to make life easier.
+</p>
 
 <h2>Skills</h2>
 
 <ul class="skill-list">
-	<li>HTML - Jade - Haml - Erb</li>
-	<li>Responsive (Mobile First)</li>
-	<li>CSS (Stylus, Sass, Less)</li>
-	<li>Css Frameworks (Bootstrap, Foundation)</li>
-	<li>Javascript (Design Patterns, Tests)</li>
-	<li>AngularJS - ReactJS</li>
-	<li>Grunt - Gulp - Yeoman</li>
-	<li>Git</li>
-	<li>PHP</li>
-	<li>Python</li>
-	<li>MySQL - MongoDB</li>
-	<li>Scrum and Kanban</li>
-	<li>TDD e Continuous Integration</li>
+				<li>Python</li>
+				<li>Java</li>
+				<li>JavaScript</li>
+				<li>TypeScript</li>
+				<li>Go</li>
+				<li>C</li>
+				<li>Rust</li>
+				<li>Lua</li>
+				<li>SQL</li>
+				<li>HTML</li>
+				<li>CSS</li>
+				<li>bash</li>
+				<li>React</li>
+				<li>Node.js</li>
+				<li>Express.js</li>
+				<li>MongoDB - PostgreSQL - Firebase</li>
+				<li>AWS</li>
+				<li>Docker</li>
+				<li>Bash</li>
+				<li>Git</li>
+				<li>Unix</li>
+				<li>Treesitter</li>
+				<li>Jira - Scrum - Kanban</li>
+				<li>TDD - Continuous Integration</li>
 </ul>
 
-<h2>Projects</h2>
-
-<ul>
-	<li><a href="https://github.com/">Lorem Lorem</a></li>
-	<li><a href="https://github.com/">Ipsum Dolor</a></li>
-	<li><a href="https://github.com/">Dolor Lorem</a></li>
-</ul>
+<!-- <h2>Projects</h2> -->
+<!---->
+<!-- <ul> -->
+<!-- 	<li><a href="https://github.com/">Lorem Lorem</a></li> -->
+<!-- 	<li><a href="https://github.com/">Ipsum Dolor</a></li> -->
+<!-- 	<li><a href="https://github.com/">Dolor Lorem</a></li> -->
+<!-- </ul> -->

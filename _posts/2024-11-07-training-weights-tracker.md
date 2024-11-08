@@ -48,7 +48,7 @@ The other purpose of the note I have is to keep track of the different weights I
 I keep track of if I should add more weight next time by putting a question mark next to the weight.
 For example, next time I do bicep curls I should try 50 instead of 40 pounds.
 This method of keeping track of weights has worked well for me, but it has one flaw.
-I can only see if I should increase whatever my current weight is for an exercise, but I can't see when I last increased my weight _(I know that I can use the undo feature on the Notes app to see past changes, but I can't see line-by-line changes easily, and again my goal is decreasing mental overhead :beaming_face_with_smiling_eyes:)_.
+I can only see if I should increase whatever my current weight is for an exercise, but I can't see when I last increased my weight _(I know that I can use the undo feature on the Notes app to see past changes, but I can't see line-by-line changes easily, and again my goal is decreasing mental overhead :) )_.
 This is useful to me as I would like to know how long I've stayed at a certain weight so I can have an idea of how much I'm getting stronger over time.
 
 So the second reason I want to build my own exercise tracker is to have a better way of _visualizing_ how much I've increased my weights over time.

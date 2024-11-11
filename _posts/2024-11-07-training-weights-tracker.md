@@ -12,6 +12,10 @@ projects: true
 category: project
 author: vineshbenny
 description: First post about weight tracker app.
+
+excerpt: "Weight tracker app to keep track of exercises and weights."
+seo_title: "Training Weights Tracker App in Swift for iOS?"
+seo_description: "Weight tracker app in Swift for iOS to keep track of exercises and weights using graphs in SwiftUI."
 ---
 
 ## Reasons I'm building this app

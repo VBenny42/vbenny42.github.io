@@ -5,6 +5,28 @@ layout: page
 
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
+# Vinesh Benny
+
+<div class="social-links" style="text-align:center; margin-top: -40px;">
+
+    <a class="link" data-title="linkedin.com/in/vinesh-benny-8b783221b" href="https://www.linkedin.com/in/vinesh-benny-8b783221b" target="LinkedIn"  rel="noopener" alt="anchor link for social media linkedin" aria-label="anchor link for social media linkedin">
+    <i class="fa-brands fa-linkedin"></i>
+    </a>
+
+
+
+    <a class="link" data-title="github.com/VBenny42" href="https://github.com/VBenny42" target="_blank"  rel="noopener" alt="anchor link for social media github" aria-label="anchor link for social media github">
+    <i class="fa-brands fa-github"></i>
+    </a>
+
+
+
+    <a class="link" data-title="vineshb100@gmail.com" href="mailto:vineshb100@gmail.com"  rel="noopener" alt="anchor link for email" aria-label="anchor link for email">
+    <i class="fa-regular fa-envelope"></i>
+    </a>
+
+</div>
+
 <p>
 I'm a Software Developer currently based in Trinidad and Tobago.
 I have a passion for learning how things work and I'm always looking for ways to improve my skills and workflows.

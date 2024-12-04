@@ -124,9 +124,9 @@ with open("input2-sorted.txt", "rb") as i2:
 
 Let's break down the code:
 
--   `with open("input1-sorted.txt", "rb") as i1:` Open the first sorted list for reading.
+-   `with open("input1-sorted.txt", "rb") as i1:`{:.python} Open the first sorted list for reading.
 -   `i1_lines = i1.readlines()` Read all the lines into from the file.
--   `i1_lines = map(int, i1_lines)` Convert the each line to an integer.
+-   `i1_lines = map(int, i1_lines)` Convert each line to an integer.
 -   `diff_sum = sum(abs(line1 - line2) for line1, line2 in zip(i1_lines, i2_lines))`
     -   `zip(i1_lines, i2_lines)` This will create a list of tuples, where each tuple contains the corresponding lines from the two files.
     -   `abs(line1 - line2)` Calculate the absolute difference between the two numbers.
@@ -207,10 +207,10 @@ Let's break down the code:
 -   `from collections import Counter` Import the `Counter` class from the `collections` module.
 -   `i1_counter = Counter(lines)` Create a `Counter` object from the lines in the first file (,after converting them to integers, similar to the previous part).
 -   Similarly for the second file.
--   `for key in i1_counter.keys():` Loop through each unique number in the first list, which would be the keys of the `Counter` object.
+-   `for key in i1_counter.keys():` Loop through each unique number in the left list, which would be the keys of the `Counter` object.
 -   `similarity_sum += (key * i1_counter[key]) * i2_counter.get(key, 0)` Calculate the similarity score for the current number and add it to the running total.
-    -   `(key * i1_counter[key])` Multiply the unique number by the number of times it appears in the first list.
-    -   `i2_counter.get(key, 0)` Get the number of times the current number appears in the second list, or `0` if it doesn't appear at all.
+    -   `(key * i1_counter[key])` Multiply the unique number by the number of times it appears in the left list.
+    -   `i2_counter.get(key, 0)` Get the number of times the current number appears in the right list, or `0` if it doesn't appear at all.
 -   `print(similarity_sum)` Print the final result.
 
 Again, I've only included the relevant parts of the code here, check out my [repository](https://github.com/VBenny42/AoC/blob/main/2024/day01/solution.py) for the full solution.

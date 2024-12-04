@@ -7,7 +7,7 @@ headerImage: false
 tag:
     - python
     - advent-of-code
-star: true
+star: false
 projects: true
 category: blog
 author: vineshbenny

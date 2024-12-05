@@ -87,45 +87,21 @@ def get_adjacent_letters(
     x, y = coord.x, coord.y
     adjacent = {}
     if x > 0:
-        c = Coordinate()
-        c.x = x - 1
-        c.y = y
-        adjacent[Directions.LEFT] = (grid[y][x - 1], c)
+        adjacent[Directions.LEFT] = (grid[y][x - 1], Coordinate(x - 1, y))
     if x < len(grid[y]) - 1:
-        c = Coordinate()
-        c.x = x + 1
-        c.y = y
-        adjacent[Directions.RIGHT] = (grid[y][x + 1], c)
+        adjacent[Directions.RIGHT] = (grid[y][x + 1], Coordinate(x + 1, y))
     if y > 0:
-        c = Coordinate()
-        c.x = x
-        c.y = y - 1
-        adjacent[Directions.UP] = (grid[y - 1][x], c)
+        adjacent[Directions.UP] = (grid[y - 1][x], Coordinate(x, y - 1))
     if y < len(grid) - 1:
-        c = Coordinate()
-        c.x = x
-        c.y = y + 1
-        adjacent[Directions.DOWN] = (grid[y + 1][x], c)
+        adjacent[Directions.DOWN] = (grid[y + 1][x], Coordinate(x, y + 1))
     if x > 0 and y > 0:
-        c = Coordinate()
-        c.x = x - 1
-        c.y = y - 1
-        adjacent[Directions.UP_LEFT] = (grid[y - 1][x - 1], c)
+        adjacent[Directions.UP_LEFT] = (grid[y - 1][x - 1], Coordinate(x - 1, y - 1))
     if x < len(grid[y]) - 1 and y > 0:
-        c = Coordinate()
-        c.x = x + 1
-        c.y = y - 1
-        adjacent[Directions.UP_RIGHT] = (grid[y - 1][x + 1], c)
+        adjacent[Directions.UP_RIGHT] = (grid[y - 1][x + 1], Coordinate(x + 1, y - 1))
     if x > 0 and y < len(grid) - 1:
-        c = Coordinate()
-        c.x = x - 1
-        c.y = y + 1
-        adjacent[Directions.DOWN_LEFT] = (grid[y + 1][x - 1], c)
+        adjacent[Directions.DOWN_LEFT] = (grid[y + 1][x - 1], Coordinate(x - 1, y + 1))
     if x < len(grid[y]) - 1 and y < len(grid) - 1:
-        c = Coordinate()
-        c.x = x + 1
-        c.y = y + 1
-        adjacent[Directions.DOWN_RIGHT] = (grid[y + 1][x + 1], c)
+        adjacent[Directions.DOWN_RIGHT] = (grid[y + 1][x + 1], Coordinate(x + 1, y + 1))
     return adjacent
 ```
 
@@ -204,10 +180,7 @@ def xmas_matches1(grid: list[list[str]]) -> int:
     for y in range(len(grid)):
         for x in range(len(grid[y])):
             for direction in Directions:
-                c = Coordinate()
-                c.x = x
-                c.y = y
-                match = is_xmas_match(grid, c, [], direction)
+                match = is_xmas_match(grid, Coordinate(x, y), [], direction)
                 if match:
                     matches += 1
 
@@ -220,8 +193,7 @@ Breaking down the function:
 -   `for y in range(len(grid)):` Iterate over the rows of the grid.
 -   `for x in range(len(grid[y])):` Iterate over the columns of the grid.
 -   `for direction in Directions:` Iterate over the directions.
--   `c = Coordinate()` Create a coordinate object for the current position.
--   `match = is_xmas_match(grid, c, [], direction)` Check if the word `XMAS` can be formed starting from the current coordinate in the current direction.
+-   `match = is_xmas_match(grid, Coordinate(x, y), [], direction)` Check if the word `XMAS` can be formed starting from the current coordinate in the current direction.
 -   `if match:` If a match is found, increment the counter.
 
 Finally, we can call the `xmas_matches1` function with the grid we read from the input file to get the number of instances of `XMAS`.
@@ -316,10 +288,7 @@ def xmas_matches2(grid: list[list[str]]) -> int:
     for y in range(len(grid)):
         for x in range(len(grid[y])):
             if grid[y][x] == "A":
-                c = Coordinate()
-                c.x = x
-                c.y = y
-                match = is_x_mas_match(grid, c)
+                match = is_x_mas_match(grid, Coordinate(x, y))
                 if match:
                     matches += 1
     return matches

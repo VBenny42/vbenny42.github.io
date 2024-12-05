@@ -18,7 +18,7 @@ seo_title: "Advent of Code 2024 Day 4 -- Ceres Search by Vinesh Benny"
 seo_description: "Vinesh Benny's Advent of Code 2024 Day 4 solution in Python."
 ---
 
-# Day 2: [Ceres Search](https://adventofcode.com/2024/day/4)
+# Day 4: [Ceres Search](https://adventofcode.com/2024/day/4)
 
 ## Part 1
 

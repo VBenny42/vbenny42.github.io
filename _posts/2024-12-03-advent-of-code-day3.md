@@ -18,7 +18,7 @@ seo_title: "Advent of Code 2024 Day 3 -- Mull It Over by Vinesh Benny"
 seo_description: "Vinesh Benny's Advent of Code 2024 Day 3 solution in Python."
 ---
 
-# Day 2: [Mull It Over](https://adventofcode.com/2024/day/3)
+# Day 3: [Mull It Over](https://adventofcode.com/2024/day/3)
 
 ## Part 1
 

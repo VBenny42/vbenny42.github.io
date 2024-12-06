@@ -412,7 +412,7 @@ Function 'main3' executed in 13.8823s
 ```
 
 `main2` is the non-parallelized version, and `main3` is the parallelized version.
-I know I could probably optimize my algorithm but I'm happy with the performance I'm getting.
+I know I could probably optimize my algorithm to pick the possible obstacles in a smarter way, but I'm happy with the performance I'm getting.
 
 Again, I've only included the relevant parts of the code here, check out my [repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py) for the full solution.
 

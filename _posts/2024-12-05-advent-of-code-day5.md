@@ -18,7 +18,7 @@ seo_title: "Advent of Code 2024 Day 5 -- Print Queue by Vinesh Benny"
 seo_description: "Vinesh Benny's Advent of Code 2024 Day 5 solution in Python."
 ---
 
-# Day 1: [Print Queue](https://adventofcode.com/2024/day/5)
+# Day 5: [Print Queue](https://adventofcode.com/2024/day/5)
 
 ## Part 1
 

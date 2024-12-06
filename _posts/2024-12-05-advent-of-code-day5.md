@@ -22,11 +22,10 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 5 solution in Python."
 
 ## Part 1
 
-Today's puzzle is called "Print Queue".
-The input for today's puzzle is a file containing two paragraphs of text, with
-the first paragraph being ordering rules, and the second paragraph being
-sequences of numbers.
-This is the example input that was given.
+Today's puzzle is called "Print Queue". The input for today's puzzle is a file
+containing two paragraphs of text, with the first paragraph being ordering
+rules, and the second paragraph being sequences of numbers. This is the example
+input that was given.
 
 ```plaintext
 47|53
@@ -59,31 +58,38 @@ This is the example input that was given.
 97,13,75,29,47
 ```
 
-For the first paragraph, each line corresponds to an ordering rule such that
-the first number must always be before the second number in a sequence.
-For example `47|53` means that `47` must come before `53` in the sequence.
-This doesn't necessarily mean that `47` must be directly before `53`, but it
-must be before it in the sequence.
+For the first paragraph, each line corresponds to an ordering rule such that the
+first number must always be before the second number in a sequence. For example
+`47|53` means that `47` must come before `53` in the sequence. This doesn't
+necessarily mean that `47` must be directly before `53`, but it must be before
+it in the sequence.
 
-The second paragraph contains sequences of numbers (in the context of the question they're also called updates), where each sequence needs
-to be checked to see if it follows the ordering rules.
+The second paragraph contains sequences of numbers (in the context of the
+question they're also called updates), where each sequence needs to be checked
+to see if it follows the ordering rules.
 
-Looking at the example input, the first sequence is `75,47,61,53,29`.
-This sequence follows the ordering rules, because:
+Looking at the example input, the first sequence is `75,47,61,53,29`. This
+sequence follows the ordering rules, because:
 
--   `75` is correctly first because there are rules that put each other page after it: `75|47`, `75|61`, `75|53`, and `75|29`.
--   `47` is correctly second because `75` must be before it (`75|47`) and every other page must be after it according to `47|61`, `47|53`, and `47|29`.
--   `61` is correctly in the middle because `75` and `47` are before it (`75|61` and `47|61`) and `53` and `29` are after it (`61|53` and `61|29`).
--   `53` is correctly fourth because it is before page number `29` (`53|29`).
--   `29` is the only page left and so is correctly last.
+- `75` is correctly first because there are rules that put each other page after
+  it: `75|47`, `75|61`, `75|53`, and `75|29`.
+- `47` is correctly second because `75` must be before it (`75|47`) and every
+  other page must be after it according to `47|61`, `47|53`, and `47|29`.
+- `61` is correctly in the middle because `75` and `47` are before it (`75|61`
+  and `47|61`) and `53` and `29` are after it (`61|53` and `61|29`).
+- `53` is correctly fourth because it is before page number `29` (`53|29`).
+- `29` is the only page left and so is correctly last.
 
-The fourth update, `75,97,47,61,53`, is not in the correct order: it would print `75` before `97`, which violates the rule `97|75`.
-The fifth update, `61,13,29`, is also not in the correct order, since it breaks the rule `29|13`.
-The last update, `97,13,75,29,47`, is not in the correct order due to breaking several rules.
+The fourth update, `75,97,47,61,53`, is not in the correct order: it would print
+`75` before `97`, which violates the rule `97|75`. The fifth update, `61,13,29`,
+is also not in the correct order, since it breaks the rule `29|13`. The last
+update, `97,13,75,29,47`, is not in the correct order due to breaking several
+rules.
 
-Our task is to find all the correct sequences and sum all the middle numbers in the correct sequences.
-So for the example input, the correct sequences are `75,47,61,53,29`,
-`97,61,53,29,13` and `75,29,13`, and the sum of the middle numbers is `61 + 53 29 = 143`.
+Our task is to find all the correct sequences and sum all the middle numbers in
+the correct sequences. So for the example input, the correct sequences are
+`75,47,61,53,29`, `97,61,53,29,13` and `75,29,13`, and the sum of the middle
+numbers is `61 + 53 29 = 143`.
 
 ### My Solution
 
@@ -94,7 +100,8 @@ First, I split the input file into two files, one for each paragraph.
 	<script src="https://asciinema.org/a/VvBSkia5sN71MfbuXK6eIbrga.js" id="asciicast-VvBSkia5sN71MfbuXK6eIbrga" async="true"></script>
 </div>
 
-Now that I have the rules and updates in separate files, I can start reading the files and processing the data.
+Now that I have the rules and updates in separate files, I can start reading the
+files and processing the data.
 
 ```python
 with open("input-rules.txt", "r") as f:
@@ -110,16 +117,17 @@ with open("input-updates.txt", "r") as f:
 
 Let's break down the code:
 
--   `rules = ([int(value) for value in line.strip().split("|")] for line in f.readlines())`
-    Create a generator expression that reads each line from the
-    rules file, splits it by the `|` character, converts the values to integers,
-    and yields them as a list.
--   `updates = (tuple(int(value) for value in line.strip().split(",")) for line in f.readlines())`
-    Create a generator expression that reads each line from the
-    updates file, splits it by the `,` character, converts the values to integers,
-    and yields them as a tuple.
+- `rules = ([int(value) for value in line.strip().split("|")] for line in f.readlines())`
+  Create a generator expression that reads each line from the rules file, splits
+  it by the `|` character, converts the values to integers, and yields them as a
+  list.
+- `updates = (tuple(int(value) for value in line.strip().split(",")) for line in f.readlines())`
+  Create a generator expression that reads each line from the updates file,
+  splits it by the `,` character, converts the values to integers, and yields
+  them as a tuple.
 
-Now that I have all the pairwise rules, I can create a dictionary that maps each number to a set of numbers that must come after it.
+Now that I have all the pairwise rules, I can create a dictionary that maps each
+number to a set of numbers that must come after it.
 
 ```python
 ruleset = DefaultDict(set)
@@ -146,16 +154,19 @@ def is_valid1(update: tuple[int, ...], ruleset: dict[int, set[int]]) -> bool:
 
 Let's break down the code:
 
--   `for i in range(len(update)):` Loop through each page in the update.
--   `before = update[:i]` Get the pages that come before the current page.
--   `page = update[i]` Get the current page.
--   `if page in ruleset:` Check if the current page has any rules associated with it.
--   `if any(dep in before for dep in ruleset[page]):` Check if any of the pages
-    that must come after the current page are already in the `before` list.
-    If that's the case, the update is invalid, so return `False`.
--   `return True` If the loop completes without finding any violations, return `True`.
+- `for i in range(len(update)):` Loop through each page in the update.
+- `before = update[:i]` Get the pages that come before the current page.
+- `page = update[i]` Get the current page.
+- `if page in ruleset:` Check if the current page has any rules associated with
+  it.
+- `if any(dep in before for dep in ruleset[page]):` Check if any of the pages
+  that must come after the current page are already in the `before` list. If
+  that's the case, the update is invalid, so return `False`.
+- `return True` If the loop completes without finding any violations, return
+  `True`.
 
-Now that I have a way to determine valid updates, I can calculate the sum of the middle numbers in the valid updates.
+Now that I have a way to determine valid updates, I can calculate the sum of the
+middle numbers in the valid updates.
 
 ```python
 sum = 0
@@ -165,16 +176,19 @@ for update in updates:
 print(f"LOG: {sum = }")
 ```
 
-This code loops through each update, checks if it's valid, and if it is, adds the middle number to the sum.
-This was my first solution to the problem, but after working on part 2, I found another way as well that I'll explain in the next section.
+This code loops through each update, checks if it's valid, and if it is, adds
+the middle number to the sum. This was my first solution to the problem, but
+after working on part 2, I found another way as well that I'll explain in the
+next section.
 
 I've only included the relevant parts of the code here, but to see my full
-solution, you can check out my [Advent of Code GitHub
-repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py).
+solution, you can check out my
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py).
 
 ## Part 2
 
-For part 2, we instead need to find the sum of the middle numbers of the _invalid_ updates.
+For part 2, we instead need to find the sum of the middle numbers of the
+_invalid_ updates.
 
 Revisiting the example:
 
@@ -211,20 +225,26 @@ Revisiting the example:
 
 The incorrect sequences when ordered by the rules are:
 
--   `75,97,47,61,53` becomes `97,75,47,61,53`.
--   `61,13,29` becomes `61,29,13`.
--   `97,13,75,29,47` becomes `97,75,47,29,13`.
+- `75,97,47,61,53` becomes `97,75,47,61,53`.
+- `61,13,29` becomes `61,29,13`.
+- `97,13,75,29,47` becomes `97,75,47,29,13`.
 
 Adding the middle numbers of these sequences gives `47 + 29 + 47 = 123`.
 
 ### My Solution
 
-So for part 2, I can reuse the `is_valid1` function from part 1, but instead of checking if the update is valid, I can check if it's invalid.
-Once I find an invalid update, I need to find the valid ordering of the update according to the rules and sum the middle numbers.
+So for part 2, I can reuse the `is_valid1` function from part 1, but instead of
+checking if the update is valid, I can check if it's invalid. Once I find an
+invalid update, I need to find the valid ordering of the update according to the
+rules and sum the middle numbers.
 
-To reorder the update according to the rules, I can make use of a comparator function that I can pass to the `sorted` function.
-A comparator function takes two values and returns `-1` if the first value should come before the second, `0` if they're equal, and `1` if the second value should come before the first.
-For our purposes, we only care if the first value should come before the second, so we can return `-1` if the first value should come before the second, and `0` otherwise.
+To reorder the update according to the rules, I can make use of a comparator
+function that I can pass to the `sorted` function. A comparator function takes
+two values and returns `-1` if the first value should come before the second,
+`0` if they're equal, and `1` if the second value should come before the first.
+For our purposes, we only care if the first value should come before the second,
+so we can return `-1` if the first value should come before the second, and `0`
+otherwise.
 
 ```python
 def compare(ruleset, a, b):
@@ -234,11 +254,12 @@ def compare(ruleset, a, b):
     return 0
 ```
 
-This function checks if `a` has any rules associated with it, and if `b` is in the set of pages that must come after `a`.
-If that's the case, it returns `-1`, since `a` should come before `b`.
-Otherwise, it returns `0`.
+This function checks if `a` has any rules associated with it, and if `b` is in
+the set of pages that must come after `a`. If that's the case, it returns `-1`,
+since `a` should come before `b`. Otherwise, it returns `0`.
 
-Now I can use this comparator function to sort the update according to the rules.
+Now I can use this comparator function to sort the update according to the
+rules.
 
 ```python
 def reordering(
@@ -248,19 +269,19 @@ def reordering(
     return tuple(sorted(update, key=cmp_to_key(compare_with_ruleset)))
 ```
 
-The `sorted` function takes a `key` argument that specifies a function to use
-to extract a comparison key from each element, but since we need to compare two
+The `sorted` function takes a `key` argument that specifies a function to use to
+extract a comparison key from each element, but since we need to compare two
 elements at a time, we need to use the
 [`cmp_to_key`](https://docs.python.org/3/library/functools.html#functools.cmp_to_key)
-function from the `functools` module to convert the comparator function to a
-key function.
-Also, the `cmp_to_key` function only accepts functions that take two arguments,
-but since our `compare` function takes three arguments, I've created a lambda
-function that only takes two arguments and passes the ruleset as the first
-argument.
-Now I just have to let `sorted` figure out the valid ordering according to the rules.
+function from the `functools` module to convert the comparator function to a key
+function. Also, the `cmp_to_key` function only accepts functions that take two
+arguments, but since our `compare` function takes three arguments, I've created
+a lambda function that only takes two arguments and passes the ruleset as the
+first argument. Now I just have to let `sorted` figure out the valid ordering
+according to the rules.
 
-Now that I have a way to reorder the update according to the rules, I can calculate the sum of the middle numbers in the invalid updates.
+Now that I have a way to reorder the update according to the rules, I can
+calculate the sum of the middle numbers in the invalid updates.
 
 ```python
 sum = 0
@@ -271,24 +292,32 @@ for update in updates:
 print(f"LOG: {sum = }")
 ```
 
-This code loops through each update, checks if it's invalid, and if it is, reorders the update according to the rules and adds the middle number to the sum.
+This code loops through each update, checks if it's invalid, and if it is,
+reorders the update according to the rules and adds the middle number to the
+sum.
 
 #### Part 1 revisited
 
-Once I started using `sorted` to get the valid ordering of the updates, I realized that I could use the same approach to solve part 1 as well.
-Instead of checking if the update is valid, I can sort the update according to the rules and check if the sorted update is the same as the original update.
-If it is, the update is valid.
+Once I started using `sorted` to get the valid ordering of the updates, I
+realized that I could use the same approach to solve part 1 as well. Instead of
+checking if the update is valid, I can sort the update according to the rules
+and check if the sorted update is the same as the original update. If it is, the
+update is valid.
 
 ```python
 def is_valid2(update: tuple[int, ...], ruleset: dict[int, set[int]]) -> bool:
     return reordering(update, ruleset) == update
 ```
 
-All I had to do was check if the valid reordering from part 2 was the same as the original update.
-Both ways of solving part 1 are valid, but I found the second way to be more elegant.
+All I had to do was check if the valid reordering from part 2 was the same as
+the original update. Both ways of solving part 1 are valid, but I found the
+second way to be more elegant.
 
-Again, I've only included the relevant parts of the code here, check out my [repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py) for the full solution.
+Again, I've only included the relevant parts of the code here, check out my
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py)
+for the full solution.
 
 ---
 
-That's it for day 5 of Advent of Code 2024! I hope you enjoyed reading my solution and let's see how the rest of the month goes!
+That's it for day 5 of Advent of Code 2024! I hope you enjoyed reading my
+solution and let's see how the rest of the month goes!

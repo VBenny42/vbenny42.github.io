@@ -22,9 +22,9 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 6 solution in Python."
 
 ## Part 1
 
-Today's puzzle is called "Guard Gallivant".
-The input for today's puzzle is a map that has a guard and some obstacles.
-This is the example input that was given.
+Today's puzzle is called "Guard Gallivant". The input for today's puzzle is a
+map that has a guard and some obstacles. This is the example input that was
+given.
 
 ```plaintext
 ....#.....
@@ -39,11 +39,14 @@ This is the example input that was given.
 ......#...
 ```
 
-The guard, `^`, in the sample input is currently going up, and the guard can only move in the direction it's facing.
-When the guard hits an obstacle, `#`, they will turn right 90 degrees and continue moving.
-This pattern will continue until the guard moves off the map, i.e., the guard is currently at an edge of the map and they are facing the edge.
+The guard, `^`, in the sample input is currently going up, and the guard can
+only move in the direction it's facing. When the guard hits an obstacle, `#`,
+they will turn right 90 degrees and continue moving. This pattern will continue
+until the guard moves off the map, i.e., the guard is currently at an edge of
+the map and they are facing the edge.
 
-In this example, the positions occupied by the guard until they move off the map are marked with `X`.
+In this example, the positions occupied by the guard until they move off the map
+are marked with `X`.
 
 ```plaintext
 ....#.....
@@ -58,14 +61,16 @@ In this example, the positions occupied by the guard until they move off the map
 ......#X..
 ```
 
-We can see that for the sample input, the guard will visit `41` distinct positions before moving off the map.
+We can see that for the sample input, the guard will visit `41` distinct
+positions before moving off the map.
 
-We need to find the number of distinct positions the guard will visit before moving off the map, given the input map.
+We need to find the number of distinct positions the guard will visit before
+moving off the map, given the input map.
 
 ### My Solution
 
-So to solve this problem, I need to simulate the guard's movement.
-I can start by parsing the input map.
+So to solve this problem, I need to simulate the guard's movement. I can start
+by parsing the input map.
 
 ```python
 with open("input.txt") as f:
@@ -84,17 +89,19 @@ def get_starting_position(grid: list[list[str]]) -> Coordinate:
 ```
 
 This function loops through the grid and returns the coordinates of the guard's
-starting position.
-We know for a fact that the guard is always facing up in the input, so no need
-to check for other directions.
+starting position. We know for a fact that the guard is always facing up in the
+input, so no need to check for other directions.
 
-Now we need to simulate the guard's movement.
-To do this, at a given coordinate, I need to know:
+Now we need to simulate the guard's movement. To do this, at a given coordinate,
+I need to know:
 
--   The direction the guard is facing.
--   If the position in front of the guard is empty or an obstacle.
+- The direction the guard is facing.
+- If the position in front of the guard is empty or an obstacle.
 
-To keep track of the direction the guard is facing, I can use the `[cycle](https://docs.python.org/3/library/itertools.html#itertools.cycle)` iterator to provide an infinite iterator that goes through the directions that the guard will face.
+To keep track of the direction the guard is facing, I can use the
+`[cycle](https://docs.python.org/3/library/itertools.html#itertools.cycle)`
+iterator to provide an infinite iterator that goes through the directions that
+the guard will face.
 
 ```python
 class Directions(Enum):
@@ -107,13 +114,15 @@ directions = cycle(Directions)
 current_direction = next(directions)
 ```
 
-Everytime I need to change the direction, I can call `next(directions)` to get the next direction the guard will face.
+Everytime I need to change the direction, I can call `next(directions)` to get
+the next direction the guard will face.
 
-Also, I need to keep track of the where the guard has visited already.
-This can be done by just marking the position with an `X` when the guard visits it,
-like the sample input answer.
+Also, I need to keep track of the where the guard has visited already. This can
+be done by just marking the position with an `X` when the guard visits it, like
+the sample input answer.
 
-To get the next position the guard will visit, I can use the current direction and the guard's current position.
+To get the next position the guard will visit, I can use the current direction
+and the guard's current position.
 
 ```python
 def get_next_position(
@@ -140,9 +149,8 @@ def get_next_position(
 ```
 
 This function takes the grid bounds, the guard's current position, and the
-direction the guard is facing.
-If the guard is currently facing an edge, I raise an error that I make use of
-later on.
+direction the guard is facing. If the guard is currently facing an edge, I raise
+an error that I make use of later on.
 
 Now I can finally simulate the guard's movement.
 
@@ -166,22 +174,26 @@ def mark_guard_path(grid: list[list[str]], position: Coordinate) -> list[list[st
         return grid
 ```
 
-This function takes the grid and the guard's starting position, and returns the grid with the guard's path marked with `X`.
-Breaking down the function:
+This function takes the grid and the guard's starting position, and returns the
+grid with the guard's path marked with `X`. Breaking down the function:
 
--   `directions` is an infinite iterator that goes through the directions the guard will face.
--   `current_direction` is the current direction the guard is facing.
--   `next_position` is the next position the guard will visit.
--   `grid_bounds` is the bounds of the grid.
--   The `while` loop continues until the guard moves off the grid, i.e., an
-    `IndexError` is raised by the `get_next_position` function.
--   `if grid[next_position.y][next_position.x] == "#":`
-    If the guard is facing an obstacle, rotate 90 degrees and continue.
--   `grid[position.y][position.x] = "X"` marks the position the guard is currently at.
--   `position = next_position` moves the guard by 1 step.
--   `except IndexError:` When the guard moves off the grid, mark the last position and return the grid.
+- `directions` is an infinite iterator that goes through the directions the
+  guard will face.
+- `current_direction` is the current direction the guard is facing.
+- `next_position` is the next position the guard will visit.
+- `grid_bounds` is the bounds of the grid.
+- The `while` loop continues until the guard moves off the grid, i.e., an
+  `IndexError` is raised by the `get_next_position` function.
+- `if grid[next_position.y][next_position.x] == "#":` If the guard is facing an
+  obstacle, rotate 90 degrees and continue.
+- `grid[position.y][position.x] = "X"` marks the position the guard is currently
+  at.
+- `position = next_position` moves the guard by 1 step.
+- `except IndexError:` When the guard moves off the grid, mark the last position
+  and return the grid.
 
-Now I can call this function with the input grid and the guard's starting position.
+Now I can call this function with the input grid and the guard's starting
+position.
 
 ```python
 starting_position = get_starting_position(grid)
@@ -189,17 +201,20 @@ marked_grid = mark_guard_path(grid, starting_position)
 print(f"LOG: distinct positions = {sum(row.count('X') for row in marked_grid)}")
 ```
 
-This code prints the number of distinct positions the guard will visit by counting the number of `X`s in the grid.
+This code prints the number of distinct positions the guard will visit by
+counting the number of `X`s in the grid.
 
 I've only included the relevant parts of the code here, but to see my full
-solution, you can check out my [Advent of Code GitHub
-repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py).
+solution, you can check out my
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py).
 
 ## Part 2
 
-For part 2, we need to count the number of ways we can add a single obstacle, so that the guard will be stuck in a loop.
+For part 2, we need to count the number of ways we can add a single obstacle, so
+that the guard will be stuck in a loop.
 
-For example, if we add an obstacle labeled `O` next to the guard's starting position:
+For example, if we add an obstacle labeled `O` next to the guard's starting
+position:
 
 ```plaintext
 ....#.....
@@ -214,8 +229,9 @@ For example, if we add an obstacle labeled `O` next to the guard's starting posi
 ......#...
 ```
 
-The guard will be stuck in a loop and visit the same positions over and over again.
-For the example input, there are `6` ways to add an obstacle so that the guard will be stuck in a loop.
+The guard will be stuck in a loop and visit the same positions over and over
+again. For the example input, there are `6` ways to add an obstacle so that the
+guard will be stuck in a loop.
 
 <div class="side-by-side">
     <div class="toleft">
@@ -290,9 +306,9 @@ For the example input, there are `6` ways to add an obstacle so that the guard w
 
 ### My Solution
 
-To calculate the number of ways we can add an obstacle so that the guard will
-be stuck in a loop, I can add an obstacle to every position on the map, and
-check if that induces a loop.
+To calculate the number of ways we can add an obstacle so that the guard will be
+stuck in a loop, I can add an obstacle to every position on the map, and check
+if that induces a loop.
 
 I can't add an obstacle to the guard's starting position, so I can skip that.
 
@@ -306,8 +322,8 @@ def find_loops(grid: list[list[str]], position: Coordinate) -> int:
     )
 ```
 
-This function loops through the grid, adds an obstacle to every position that
-is not originally an obstacle or the starting position, and checks if a loop is
+This function loops through the grid, adds an obstacle to every position that is
+not originally an obstacle or the starting position, and checks if a loop is
 found with the addition.
 
 To check if a loop is found on adding an obstacle, I can use the same logic as
@@ -344,29 +360,29 @@ def does_induce_loop(
 
 Breaking down the function:
 
--   `grid_copy` is a copy of the original grid.
-    A copy is used as the grid is being modified for every possible obstruction,
-    and I don't want to modify the original grid.
--   `grid_copy[possible_obstruction.y][possible_obstruction.x] = "#"`
-    Adds the possible obstruction to the grid.
--   Everything until `if type(grid_copy[position.y][position.x]) == set:`
-    is the same as part 1.
--   `if type(grid_copy[position.y][position.x]) == set:`
-    If the guard has visited the position already.
-    -   `if current_direction.value in grid_copy[position.y][position.x]:`
-        If the guard has visited the position in the same direction before, a
-        loop is found.
-    -   `grid_copy[position.y][position.x].add(current_direction.value)`
-        Add the direction the guard is facing to the set of directions the
-        guard has visited the position in.
--   `else:` Guard has not visited the position before. Create a set with the
-    direction the guard is facing.
--   `position = next_position` Move the guard by 1 step.
--   `except IndexError:` Guard moves off the grid, no loop found, return `False`.
+- `grid_copy` is a copy of the original grid. A copy is used as the grid is
+  being modified for every possible obstruction, and I don't want to modify the
+  original grid.
+- `grid_copy[possible_obstruction.y][possible_obstruction.x] = "#"` Adds the
+  possible obstruction to the grid.
+- Everything until `if type(grid_copy[position.y][position.x]) == set:` is the
+  same as part 1.
+- `if type(grid_copy[position.y][position.x]) == set:` If the guard has visited
+  the position already.
+  - `if current_direction.value in grid_copy[position.y][position.x]:` If the
+    guard has visited the position in the same direction before, a loop is
+    found.
+  - `grid_copy[position.y][position.x].add(current_direction.value)` Add the
+    direction the guard is facing to the set of directions the guard has visited
+    the position in.
+- `else:` Guard has not visited the position before. Create a set with the
+  direction the guard is facing.
+- `position = next_position` Move the guard by 1 step.
+- `except IndexError:` Guard moves off the grid, no loop found, return `False`.
 
-Using this function, I can check if a loop is found for every possible obstruction.
-As this will be a time-consuming process, I can use the `multiprocessing`
-module to parallelize the process.
+Using this function, I can check if a loop is found for every possible
+obstruction. As this will be a time-consuming process, I can use the
+`multiprocessing` module to parallelize the process.
 
 I need to define a worker function that takes the grid, the possible
 obstruction, and the guard position and calls the `does_induce_loop` function.
@@ -377,7 +393,8 @@ def worker(task):
     return does_induce_loop(grid, cell, position)
 ```
 
-Now I can use the `Pool` class from the `multiprocessing` module to parallelize the process.
+Now I can use the `Pool` class from the `multiprocessing` module to parallelize
+the process.
 
 ```python
 def find_loops_multiprocessing(grid: list[list[str]], position: Coordinate) -> int:
@@ -395,11 +412,12 @@ def find_loops_multiprocessing(grid: list[list[str]], position: Coordinate) -> i
 ```
 
 This function creates a generator of tasks, where each task is a tuple of the
-grid, the possible obstruction, and the guard's starting position.
-The `Pool` class is used to parallelize the process, and the `worker` function
-is called with each task.
+grid, the possible obstruction, and the guard's starting position. The `Pool`
+class is used to parallelize the process, and the `worker` function is called
+with each task.
 
-This function was faster (obviously) than the non-parallelized version, when I tested it.
+This function was faster (obviously) than the non-parallelized version, when I
+tested it.
 
 ```plaintext
 LOG: ways to induce a loop = 1888
@@ -414,16 +432,15 @@ obstacles in a smarter way, but I'm happy with the performance I'm getting.
 
 ### Update: Optimization
 
-After browsing the Advent of Code subreddit once I was happy with my solution,
-I saw a comment that made me realize how to pick my obstacles in a better way.
-I can pick the obstacles that are in the guard's path from part 1, as those are
+After browsing the Advent of Code subreddit once I was happy with my solution, I
+saw a comment that made me realize how to pick my obstacles in a better way. I
+can pick the obstacles that are in the guard's path from part 1, as those are
 the only obstacles that the guard will interact with. Unless the input is such
-that the guard visits every empty positions in the grid, this should be a
-better way to pick the obstacles, and even in this case, this solution still
-holds.
+that the guard visits every empty positions in the grid, this should be a better
+way to pick the obstacles, and even in this case, this solution still holds.
 
-I can modify the `find_loops` function to take the marked grid from part 1 and only
-put obstacles in the positions marked with `X`.
+I can modify the `find_loops` function to take the marked grid from part 1 and
+only put obstacles in the positions marked with `X`.
 
 ```python
 marked_grid = mark_guard_path(grid, starting_position)
@@ -438,8 +455,8 @@ def find_loops(grid: list[list[str]], position: Coordinate) -> int:
     )
 ```
 
-Similarly, I can modify the `find_loops_multiprocessing` function to only pick the
-positions marked with `X`.
+Similarly, I can modify the `find_loops_multiprocessing` function to only pick
+the positions marked with `X`.
 
 ```python
 tasks = (
@@ -451,8 +468,8 @@ tasks = (
 ```
 
 This optimization reduces the number of obstructions to check though, resulting
-in the normal optimized version taking around the same time as the
-non-optimized parallelized version.
+in the normal optimized version taking around the same time as the non-optimized
+parallelized version.
 
 ```plaintext
 LOG: ways to induce a loop = 1888
@@ -461,8 +478,11 @@ LOG: ways to induce a loop = 1888
 Function 'main3' executed in 3.3105s
 ```
 
-Again, I've only included the relevant parts of the code here, check out my [repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py) for the full solution.
+Again, I've only included the relevant parts of the code here, check out my
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py)
+for the full solution.
 
 ---
 
-That's it for day 6 of Advent of Code 2024! I hope you enjoyed reading my solution and let's see how the rest of the month goes!
+That's it for day 6 of Advent of Code 2024! I hope you enjoyed reading my
+solution and let's see how the rest of the month goes!

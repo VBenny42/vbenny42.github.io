@@ -22,9 +22,9 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 4 solution in Python."
 
 ## Part 1
 
-Today's puzzle is called "Ceres Search".
-The input for today's puzzle is a file where it represents a word search where we have to find the word `XMAS`.
-This is the example input that was given.
+Today's puzzle is called "Ceres Search". The input for today's puzzle is a file
+where it represents a word search where we have to find the word `XMAS`. This is
+the example input that was given.
 
 ```plaintext
 MMMSXXMASM
@@ -39,9 +39,10 @@ MAMMMXMMMM
 MXMXAXMASX
 ```
 
-`XMAS` can appear horizontal, vertical, diagonal, written backwards, or even overlapping with other words.
-From the example, there are 18 instances of `XMAS`.
-Here's the example where all the letters not involved with `XMAS` words have been replaced with `.`.
+`XMAS` can appear horizontal, vertical, diagonal, written backwards, or even
+overlapping with other words. From the example, there are 18 instances of
+`XMAS`. Here's the example where all the letters not involved with `XMAS` words
+have been replaced with `.`.
 
 ```plaintext
 ....XXMAS.
@@ -60,15 +61,21 @@ Our task is to find the number of instances of `XMAS` in the word search.
 
 ### My Solution
 
-For my solution, I went a bit overboard with the code needed, so there are a few functions that I will be explaining.
-But first let's start with the pseudocode to solve the problem:
+For my solution, I went a bit overboard with the code needed, so there are a few
+functions that I will be explaining. But first let's start with the pseudocode
+to solve the problem:
 
-1. Read the input file and store the word search in a 2D list. We will be treating this list as a grid.
-2. For every coordinate in the grid, check if the word `XMAS` can be formed in any direction (horizontal, vertical, diagonal, and reverse diagonal), starting from that coordinate.
-3. If the word `XMAS` can be formed, add the amount of times it can be formed to a counter.
+1. Read the input file and store the word search in a 2D list. We will be
+   treating this list as a grid.
+2. For every coordinate in the grid, check if the word `XMAS` can be formed in
+   any direction (horizontal, vertical, diagonal, and reverse diagonal),
+   starting from that coordinate.
+3. If the word `XMAS` can be formed, add the amount of times it can be formed to
+   a counter.
 4. Return the counter as the result.
 
-Starting with step 1, let's read the input file and store the word search in a 2D list.
+Starting with step 1, let's read the input file and store the word search in a
+2D list.
 
 ```python
 with open("input.txt") as f:
@@ -76,9 +83,10 @@ with open("input.txt") as f:
 grid = [list(line.strip()) for line in lines]
 ```
 
-Easy enough, on to step 2.
-For every coordinate in the grid, we need to check if the word `XMAS` can be formed in any direction.
-To do this, I created a function called `get_adjacent_letters` that returns the letters adjacent to a given coordinate in the grid.
+Easy enough, on to step 2. For every coordinate in the grid, we need to check if
+the word `XMAS` can be formed in any direction. To do this, I created a function
+called `get_adjacent_letters` that returns the letters adjacent to a given
+coordinate in the grid.
 
 ```python
 def get_adjacent_letters(
@@ -108,13 +116,14 @@ def get_adjacent_letters(
 This function takes a coordinate and the grid as input and returns a dictionary
 where the keys are the directions relative to the coordinate and the values are
 tuples containing the letter at the adjacent coordinate as well as the actual
-coordinate.
-If the coordinate is at the edge of the grid, the function will not return the
-adjacent coordinate that would be out of bounds.
-This function seems like overkill, and it is, but I think it ends up being more
-readable than if I just hardcoded the directions.
+coordinate. If the coordinate is at the edge of the grid, the function will not
+return the adjacent coordinate that would be out of bounds. This function seems
+like overkill, and it is, but I think it ends up being more readable than if I
+just hardcoded the directions.
 
-Now that I can get the adjacent letters, I created a function called `is_xmas_match` that checks if the word `XMAS` can be formed starting from a given coordinate in a given direction.
+Now that I can get the adjacent letters, I created a function called
+`is_xmas_match` that checks if the word `XMAS` can be formed starting from a
+given coordinate in a given direction.
 
 ```python
 def is_xmas_match(
@@ -148,30 +157,31 @@ def is_xmas_match(
     return []
 ```
 
-This function takes the grid, a coordinate, the current match, and the current direction as input.
-Let's break down the function:
+This function takes the grid, a coordinate, the current match, and the current
+direction as input. Let's break down the function:
 
--   `xmas = "XMAS"` The word we are looking for.
--   `adjacent = get_adjacent_letters(coord, grid)` Get the adjacent letters to the current coordinate.
--   `adjacent_letter = adjacent.get(current_direction, None)` Get the letter in
-    the direction we are currently checking.
-    If the letter is `None`, this means we are at the edge of the grid and cannot
-    form the word `XMAS`, so return empty list.
--   `potential_xmas = "".join(grid[c.y][c.x] for c in current_match) + grid[coord.y][coord.x] + adjacent_letter[0]`
-    This creates a string of the letters we have matched so far, the letter at
-    the current coordinate, and the adjacent letter in the direction we are
-    checking.
--   `if xmas.startswith(potential_xmas):` Check if the word we have formed so far
-    is a prefix of the word `XMAS`.
-    If it is, add the current coordinate to the match so far and continue
-    checking the next letter in the direction we are checking.
--   `return []` If the word we have formed so far is not a prefix of `XMAS`, return an empty list.
+- `xmas = "XMAS"` The word we are looking for.
+- `adjacent = get_adjacent_letters(coord, grid)` Get the adjacent letters to the
+  current coordinate.
+- `adjacent_letter = adjacent.get(current_direction, None)` Get the letter in
+  the direction we are currently checking. If the letter is `None`, this means
+  we are at the edge of the grid and cannot form the word `XMAS`, so return
+  empty list.
+- `potential_xmas = "".join(grid[c.y][c.x] for c in current_match) + grid[coord.y][coord.x] + adjacent_letter[0]`
+  This creates a string of the letters we have matched so far, the letter at the
+  current coordinate, and the adjacent letter in the direction we are checking.
+- `if xmas.startswith(potential_xmas):` Check if the word we have formed so far
+  is a prefix of the word `XMAS`. If it is, add the current coordinate to the
+  match so far and continue checking the next letter in the direction we are
+  checking.
+- `return []` If the word we have formed so far is not a prefix of `XMAS`,
+  return an empty list.
 
 Again, I know there's a lot of overhead in this function, sorry!
 
 Now that we can check if the word `XMAS` can be formed starting from a given
-coordinate in a given direction, we can use it to go through every coordinate
-in the grid in every direction and keep track of the matches.
+coordinate in a given direction, we can use it to go through every coordinate in
+the grid in every direction and keep track of the matches.
 
 ```python
 def xmas_matches1(grid: list[list[str]]) -> int:
@@ -189,27 +199,30 @@ def xmas_matches1(grid: list[list[str]]) -> int:
 
 Breaking down the function:
 
--   `matches = 0` Initialize a counter for the number of matches.
--   `for y in range(len(grid)):` Iterate over the rows of the grid.
--   `for x in range(len(grid[y])):` Iterate over the columns of the grid.
--   `for direction in Directions:` Iterate over the directions.
--   `match = is_xmas_match(grid, Coordinate(x, y), [], direction)` Check if the word `XMAS` can be formed starting from the current coordinate in the current direction.
--   `if match:` If a match is found, increment the counter.
+- `matches = 0` Initialize a counter for the number of matches.
+- `for y in range(len(grid)):` Iterate over the rows of the grid.
+- `for x in range(len(grid[y])):` Iterate over the columns of the grid.
+- `for direction in Directions:` Iterate over the directions.
+- `match = is_xmas_match(grid, Coordinate(x, y), [], direction)` Check if the
+  word `XMAS` can be formed starting from the current coordinate in the current
+  direction.
+- `if match:` If a match is found, increment the counter.
 
-Finally, we can call the `xmas_matches1` function with the grid we read from the input file to get the number of instances of `XMAS`.
+Finally, we can call the `xmas_matches1` function with the grid we read from the
+input file to get the number of instances of `XMAS`.
 
 ```python
 print(xmas_matches1(grid))
 ```
 
 I've only included the relevant parts of the code here, but to see my full
-solution, you can check out my [Advent of Code GitHub
-repository](https://github.com/VBenny42/AoC/blob/main/2024/day04/solution.py).
+solution, you can check out my
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day04/solution.py).
 
 ## Part 2
 
-For part 2, instead of finding the word `XMAS`, we have to find instances of two `MAS` words in the shape of an `X`.
-For example,
+For part 2, instead of finding the word `XMAS`, we have to find instances of two
+`MAS` words in the shape of an `X`. For example,
 
 ```plaintext
 M.S
@@ -217,7 +230,8 @@ M.S
 M.S
 ```
 
-Looking at the example input again with the irrelevant letters replaced with `.`.
+Looking at the example input again with the irrelevant letters replaced with
+`.`.
 
 ```plaintext
 .M.S......
@@ -232,23 +246,25 @@ M.M.M.M.M.
 ..........
 ```
 
-There are 9 instances of `X-MAS` appearing in the word search.
-Notice that the instances can overlap, and the `X` can be formed in any direction.
+There are 9 instances of `X-MAS` appearing in the word search. Notice that the
+instances can overlap, and the `X` can be formed in any direction.
 
 ### My Solution
 
-To solve part 2, my solution is less complex than part 1.
-Again, let's start with the pseudocode:
+To solve part 2, my solution is less complex than part 1. Again, let's start
+with the pseudocode:
 
-1.  Read the input file and store the word search in a 2D list. It's treated as a grid.
-2.  An `X-MAS` instance can only be formed with an `A` in the middle, so
-    iterate over all the coordinates in the grid, and if the letter is `A`, check
-    if an `X-MAS` instance can be formed starting from that coordinate.
-3.  Keep track of the number of instances of `X-MAS` found.
+1. Read the input file and store the word search in a 2D list. It's treated as a
+   grid.
+2. An `X-MAS` instance can only be formed with an `A` in the middle, so iterate
+   over all the coordinates in the grid, and if the letter is `A`, check if an
+   `X-MAS` instance can be formed starting from that coordinate.
+3. Keep track of the number of instances of `X-MAS` found.
 
 The file is read in the same way as part 1.
 
-To check if the `A` at a coordinate can be part of an `X-MAS` instance, I created a function called `is_x_mas_match`.
+To check if the `A` at a coordinate can be part of an `X-MAS` instance, I
+created a function called `is_x_mas_match`.
 
 ```python
 def is_x_mas_match(grid: list[list[str]], coord: Coordinate) -> bool:
@@ -272,11 +288,15 @@ def is_x_mas_match(grid: list[list[str]], coord: Coordinate) -> bool:
 
 Breaking down the function:
 
--   `corners = {...}` The set of directions that are the corners of the `X` in an `X-MAS` instance. We only need to check these directions.
--   `adjacent = get_adjacent_letters(coord, grid)` Get the adjacent letters to the current coordinate (See! I told you it would be useful!).
--   `if (corners).intersection(adjacent.keys()) != corners:` Check if all the corners are present in the adjacent letters.
-    If not, it cannot be an `X-MAS` instance, so return `False`.
--   `return (...) and (...)` For an `X-MAS` match, There must be an `M` and an `S` in _each_ of the diagonals.
+- `corners = {...}` The set of directions that are the corners of the `X` in an
+  `X-MAS` instance. We only need to check these directions.
+- `adjacent = get_adjacent_letters(coord, grid)` Get the adjacent letters to the
+  current coordinate (See! I told you it would be useful!).
+- `if (corners).intersection(adjacent.keys()) != corners:` Check if all the
+  corners are present in the adjacent letters. If not, it cannot be an `X-MAS`
+  instance, so return `False`.
+- `return (...) and (...)` For an `X-MAS` match, There must be an `M` and an `S`
+  in _each_ of the diagonals.
 
 Now that we can check if the `A` at a coordinate can be part of an `X-MAS`
 instance, we can iterate over all the coordinates in the grid and keep track of
@@ -294,8 +314,10 @@ def xmas_matches2(grid: list[list[str]]) -> int:
     return matches
 ```
 
-The only difference between this function and the one for part 1 is that we only do more checks if the letter at the current coordinate is `A`.
-Finally, we can call the `xmas_matches2` function with the grid we read from the input file to get the number of instances of `X-MAS`.
+The only difference between this function and the one for part 1 is that we only
+do more checks if the letter at the current coordinate is `A`. Finally, we can
+call the `xmas_matches2` function with the grid we read from the input file to
+get the number of instances of `X-MAS`.
 
 ```python
 print(xmas_matches2(grid))
@@ -303,4 +325,5 @@ print(xmas_matches2(grid))
 
 ---
 
-That's it for day 4 of Advent of Code 2024! I hope you enjoyed reading my solution and let's see how the rest of the month goes!
+That's it for day 4 of Advent of Code 2024! I hope you enjoyed reading my
+solution and let's see how the rest of the month goes!

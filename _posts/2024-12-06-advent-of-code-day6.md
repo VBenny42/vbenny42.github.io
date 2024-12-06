@@ -402,7 +402,7 @@ grid, the possible obstruction, and the guard's starting position.
 The `Pool` class is used to parallelize the process, and the `worker` function
 is called with each task.
 
-This function was faster than the non-parallelized version, when I tested it.
+This function was faster (obviously) than the non-parallelized version, when I tested it.
 
 ```plaintext
 LOG: ways to induce a loop = 1888

@@ -298,15 +298,12 @@ I can't add an obstacle to the guard's starting position, so I can skip that.
 
 ```python
 def find_loops(grid: list[list[str]], position: Coordinate) -> int:
-    sum = 0
-    for y, row in enumerate(grid):
-        for x, cell in enumerate(row):
-            if cell == "#":
-                continue
-            if cell == "^":
-                continue
-            sum += induce_loop(grid, Coordinate(x, y), position)
-    return sum
+    return sum(
+        does_induce_loop(grid, Coordinate(x, y), position)
+        for y, row in enumerate(grid)
+        for x, cell in enumerate(row)
+        if cell not in {"^", "#"}
+    )
 ```
 
 This function loops through the grid, adds an obstacle to every position that
@@ -411,8 +408,58 @@ LOG: ways to induce a loop = 1888
 Function 'main3' executed in 13.8823s
 ```
 
-`main2` is the non-parallelized version, and `main3` is the parallelized version.
-I know I could probably optimize my algorithm to pick the possible obstacles in a smarter way, but I'm happy with the performance I'm getting.
+`main2` is the non-parallelized version, and `main3` is the parallelized
+version. I know I could probably optimize my algorithm to pick the possible
+obstacles in a smarter way, but I'm happy with the performance I'm getting.
+
+### Update: Optimization
+
+After browsing the Advent of Code subreddit once I was happy with my solution,
+I saw a comment that made me realize how to pick my obstacles in a better way.
+I can pick the obstacles that are in the guard's path from part 1, as those are
+the only obstacles that the guard will interact with. Unless the input is such
+that the guard visits every empty positions in the grid, this should be a
+better way to pick the obstacles, and even in this case, this solution still
+holds.
+
+I can modify the `find_loops` function to take the marked grid from part 1 and only
+put obstacles in the positions marked with `X`.
+
+```python
+marked_grid = mark_guard_path(grid, starting_position)
+print(f"LOG: ways to induce a loop = {find_loops(marked_grid, starting_position)}")
+
+def find_loops(grid: list[list[str]], position: Coordinate) -> int:
+    return sum(
+        does_induce_loop(grid, Coordinate(x, y), position)
+        for y, row in enumerate(grid)
+        for x, cell in enumerate(row)
+        if cell == "X"
+    )
+```
+
+Similarly, I can modify the `find_loops_multiprocessing` function to only pick the
+positions marked with `X`.
+
+```python
+tasks = (
+    (grid, Coordinate(x, y), position)
+    for y, row in enumerate(grid)
+    for x, cell in enumerate(row)
+    if cell == "X"
+)
+```
+
+This optimization reduces the number of obstructions to check though, resulting
+in the normal optimized version taking around the same time as the
+non-optimized parallelized version.
+
+```plaintext
+LOG: ways to induce a loop = 1888
+Function 'main2' executed in 13.0746s
+LOG: ways to induce a loop = 1888
+Function 'main3' executed in 3.3105s
+```
 
 Again, I've only included the relevant parts of the code here, check out my [repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py) for the full solution.
 

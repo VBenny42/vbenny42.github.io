@@ -60,7 +60,7 @@ This is the example input that was given.
 ```
 
 For the first paragraph, each line corresponds to an ordering rule such that
-the first number must always be before the secong number in a sequence.
+the first number must always be before the second number in a sequence.
 For example `47|53` means that `47` must come before `53` in the sequence.
 This doesn't necessarily mean that `47` must be directly before `53`, but it
 must be before it in the sequence.

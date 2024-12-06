@@ -266,8 +266,8 @@ Now that I have a way to reorder the update according to the rules, I can calcul
 sum = 0
 for update in updates:
     if not is_valid2(update, ruleset):
-        valid_ordering = reordering(update, ruleset)
-        sum += valid_ordering[(len(valid_ordering) - 1) // 2]
+        valid_reordering = reordering(update, ruleset)
+        sum += valid_reordering[(len(valid_reordering) - 1) // 2]
 print(f"LOG: {sum = }")
 ```
 
@@ -281,11 +281,10 @@ If it is, the update is valid.
 
 ```python
 def is_valid2(update: tuple[int, ...], ruleset: dict[int, set[int]]) -> bool:
-    compare_with_ruleset = lambda a, b: compare(ruleset, a, b)
-    return sorted(update, key=cmp_to_key(compare_with_ruleset)) == list(update)
+    return reordering(update, ruleset) == update
 ```
 
-All I had to do was change the `is_valid1` function to use the `compare` function and the `sorted` function to check if the update is valid.
+All I had to do was check if the valid reordering from part 2 was the same as the original update.
 Both ways of solving part 1 are valid, but I found the second way to be more elegant.
 
 Again, I've only included the relevant parts of the code here, check out my [repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py) for the full solution.

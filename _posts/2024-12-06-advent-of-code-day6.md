@@ -99,7 +99,7 @@ I need to know:
 - If the position in front of the guard is empty or an obstacle.
 
 To keep track of the direction the guard is facing, I can use the
-`[cycle](https://docs.python.org/3/library/itertools.html#itertools.cycle)`
+[`cycle`](https://docs.python.org/3/library/itertools.html#itertools.cycle)
 iterator to provide an infinite iterator that goes through the directions that
 the guard will face.
 
@@ -430,7 +430,7 @@ Function 'main3' executed in 13.8823s
 version. I know I could probably optimize my algorithm to pick the possible
 obstacles in a smarter way, but I'm happy with the performance I'm getting.
 
-### Update: Optimization
+### Update: Optimization!
 
 After browsing the Advent of Code subreddit once I was happy with my solution, I
 saw a comment that made me realize how to pick my obstacles in a better way. I

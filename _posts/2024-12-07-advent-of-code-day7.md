@@ -72,13 +72,13 @@ Let's start with the pseudocode first:
   the numbers in all possible ways.
   - For the base case, if there's only two numbers left, check if they can be
     added or multiplied to get the desired value.
+  - If the first number is greater than the desired value, there's no way to get
+    the desired value since there's no operator to decrease the value of a
+    number, so return `False`.
   - If there are more than two numbers left:
     - Take the first two numbers and apply both operators to them.
     - Recursively call the function with the result from the previous step and
       the rest of the numbers.
-  - If the first number is greater than the desired value, there's no way to get
-    the desired value since there's no operator to decrease the value of a
-    number, so return `False`.
 - If the equation is solvable, add the value to the total sum.
 
 I can implement this in Python as follows:
@@ -86,10 +86,10 @@ I can implement this in Python as follows:
 ```python
 def is_valid_equation(equation: Equation, operators) -> bool:
     desired_value, numbers = equation
-    if len(numbers) == 2:
-        return any(desired_value == op(*numbers) for op in operators)
     if numbers[0] > desired_value:
         return False
+    if len(numbers) == 2:
+        return any(desired_value == op(*numbers) for op in operators)
     first, second, *remaining_numbers = numbers
     return any(
         is_valid_equation(
@@ -231,9 +231,9 @@ approaches:
 
 ```
 LOG: Sum of true equations: 1153997401072
-Function 'main1_forward' executed in 0.1075s
+Function 'main1_forward' executed in 0.1072s
 LOG: Sum of true equations: 1153997401072
-Function 'main1_backward' executed in 0.0063s
+Function 'main1_backward' executed in 0.0058s
 ```
 
 We can see that the backward recursion approach is orders of magnitude faster
@@ -353,9 +353,9 @@ forward recursion approach.
 
 ```
 LOG: Sum of true equations with concat: 97902809384118
-Function 'main2_forward' executed in 3.0100s
+Function 'main2_forward' executed in 2.7434s
 LOG: Sum of true equations with concat: 97902809384118
-Function 'main2_backward' executed in 0.0163s
+Function 'main2_backward' executed in 0.0161s
 ```
 
 Again, I've only included the relevant parts of the code here, check out my

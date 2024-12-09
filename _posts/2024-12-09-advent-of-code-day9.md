@@ -1,7 +1,7 @@
 ---
 title: "Advent of Code 2024 Day 9 – Disk Fragmenter"
 layout: post
-date: 2024-12-08 13:36
+date: 2024-12-09 17:37
 image: /assets/images/favicon/apple-touch-icon.png
 headerImage: false
 tag:

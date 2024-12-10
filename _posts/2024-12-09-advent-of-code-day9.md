@@ -20,6 +20,18 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 9 solution in Python."
 
 # Day 9: [Disk Fragmenter](https://adventofcode.com/2024/day/9)
 
+<!--toc:start-->
+
+- [Day 9:
+  [Disk Fragmenter](https://adventofcode.com/2024/day/9)](#day-9-disk-fragmenterhttpsadventofcodecom2024day9)
+  - [Part 1](#part-1)
+    - [My Solution to Part 1](#my-solution-to-part-1)
+  - [Part 2](#part-2)
+    - [My Solution to Part 2](#my-solution-to-part-2)
+      - [Update: Optimizations!](#update-optimizations)
+
+<!--toc:end-->
+
 ## Part 1
 
 Today's input is a sequence of digits corresponding to a disk map. The example
@@ -39,7 +51,7 @@ So for example, `12345` would mean:
 - A `2` block free space, followed by
 - A file with size `3` blocks, followed by
 - A `4` block free space, followed by
-- A file with size `5` blocks.
+  - A file with size `5` blocks.
 
 Also, every file has an associated ID number, which starts at `0` and increments
 by `1` for each new file on disk. So if we visualize the disk map above, with
@@ -103,7 +115,7 @@ checksum is `1928`.
 
 We need to calculate the checksum for the compacted input disk map.
 
-### My Solution
+### My Solution to Part 1
 
 A couple things to note about the question:
 
@@ -265,7 +277,7 @@ example input is `2858`.
 We need to calculate the checksum for the compacted disk map as per the new
 rules.
 
-### My Solution
+### My Solution to Part 2
 
 My solution is a bit more complicated than part 1, as now we need to keep track
 of file sizes and free space sizes, and move files to free spaces based on their
@@ -397,6 +409,160 @@ print(f"LOGF: checksum for contiguous files {checksum(contiguous_diskmap)}")
 Again, I've only included the relevant parts of the code here, check out my
 [repository](https://github.com/VBenny42/AoC/blob/main/2024/day09/solution.py)
 for the full solution.
+
+#### Update: Optimizations!
+
+<script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">
+  </script>
+
+<p>
+My code runs in \(O(n^2)\) time, due to looking for free space blocks that can
+fit the file for each file. I can optimize this by using 10 priority queues to
+store the indices of free space blocks of size <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">10</code>. This way, I can just
+pop the leftmost free space block that can fit the file from one of the priority
+queues. This will reduce the time complexity to \(O(n \log n)\).
+</p>
+
+The new part 2 logic is almost the same as before, but with a few changes:
+
+- When converting the disk map, I also initialize the priority queues.
+- When trying to make the disk map contiguous, I pop the leftmost free space
+  block that can fit the file from the priority queues, instead of iterating
+  through the disk map.
+- I also swap the items in place, instead of inserting the file at the free
+  space index, to not mess up the indices in the priority queues.
+
+Looking at my new conversion function:
+
+```python
+def convert_with_heaps(line: list) -> tuple[list, list]:
+    is_freespace = False
+    id = 0
+    diskmap = []
+    heaps = [[] for _ in range(10)]
+    for i in line:
+        if is_freespace:
+            # Push index of free space to the heap of the size of the free space
+            heapq.heappush(heaps[i], len(diskmap))
+            for _ in range(i):
+                diskmap.append(FREE_SPACE)
+        else:
+            for _ in range(i):
+                diskmap.append(id)
+            id += 1
+        is_freespace = not is_freespace
+    return diskmap, heaps
+```
+
+Going over the differences from my originial conversion function from my
+[Part 1 Solution](#my-solution-to-part-1):
+
+- `heaps = [[] for _ in range(10)]` Initialize 10 empty priority queues.
+- `heapq.heappush(heaps[i], len(diskmap))` Push the index of the free space to
+  the heap of the size of the free space. The index is just the length of the
+  disk map at that point.
+- `return diskmap, heaps` Return the disk map _and_ the priority queues.
+
+The new `make_contiguous2` function has a bit more changes:
+
+```python
+def make_contiguous2_heap(diskmap: list, heaps: list) -> list:
+    index = len(diskmap) - 1
+    while index >= 0:
+        if diskmap[index] == FREE_SPACE:
+            index -= 1
+            continue
+
+        id = diskmap[index]
+        file_width = 0
+        # Get the width of the file
+        while index >= 0 and diskmap[index] == id:
+            file_width += 1
+            index -= 1
+
+        best_width = -1
+        smallest_index = len(diskmap)
+        # Find the leftmost index of free space that can fit the file
+        for width in range(file_width, 10):
+            if heaps[width]:
+                if smallest_index > heaps[width][0]:
+                    smallest_index = heaps[width][0]
+                    best_width = width
+
+        if smallest_index == len(diskmap):
+            continue
+        if smallest_index > index:
+            continue
+
+        # Remove the smallest index from the heap
+        # In-place swap the file with the free space
+        heapq.heappop(heaps[best_width])
+        for j in range(file_width):
+            diskmap[smallest_index + j] = id
+            diskmap[index + j + 1] = FREE_SPACE
+        # Push the new smaller free space to the heap
+        heapq.heappush(heaps[best_width - file_width], smallest_index + file_width)
+
+    return diskmap
+```
+
+Again this is more similar to my part 1 `make_contiguous` function, but with a
+few changes:
+
+- `index = len(diskmap) - 1` Start from the end of the disk map.
+- `while index >= 0:` Loop until we reach the start of the disk map.
+  - `if diskmap[index] == FREE_SPACE:` If the element is a free space, nothing
+    to swap, skip it.
+  - `id = diskmap[index]` Get the file ID of current element.
+  - `file_width = 0` Initialize the width of the file to `0`.
+  - `while index >= 0 and ...: index -= 1` Get the width of the file, and move
+    the index to the left.
+  - `best_width = -1` Initialize the best width of free space to `-1`.
+  - `smallest_index = len(diskmap)` Initialize the smallest index of free space
+    to the end of the disk map.
+  - `for width in range(file_width, 10):` Iterate through the priority queues
+    from the width of the file to `10`.
+    - `if heaps[width]:` If the heap of the width is not empty:
+      - `if smallest_index > heaps[width][0]:` If the smallest index in the heap
+        is less than the current smallest index, i.e. it is more to the left:
+        - `smallest_index = heaps[width][0]` Update the smallest index.
+        - `best_width = width` Update the best width.
+  - `if smallest_index == len(diskmap): continue` No free space found that can
+    fit the file, file can't be moved, skip it.
+  - `if smallest_index > index: continue` The free space is to the right of the
+    file, file can't be moved, skip it.
+  - `heapq.heappop(heaps[best_width])` Remove the leftmost free space index from
+    its heap.
+  - `for j in range(file_width): ...` In-place swap the file with the free
+    space.
+  - `heapq.heappush(heaps[best_width - file_width], smallest_index + file_width)`
+    Push the new free space to the heap of the new size.
+
+The rest of the code is the same as Part 1, but now I call the new functions:
+
+```python
+def main3():
+    with open("input.txt", "r") as f:
+        line = f.read().strip()
+        int_line = [int(x) for x in line]
+    diskmap, heaps = convert_with_heaps(int_line)
+    contiguous_diskmap = make_contiguous2_heap(diskmap, heaps)
+    checksum = sum(
+        i * id for i, id in enumerate(contiguous_diskmap) if id != FREE_SPACE
+    )
+    print(f"LOGF: {checksum = }")
+```
+
+This code is more optimized than my original solution, and runs much faster than
+my original solution.
+
+```
+LOG: checksum = files 6415666220005
+Function 'main2' executed in 3.6767s
+LOG: checksum = 6415666220005
+Function 'main3' executed in 0.0288s
+```
 
 ---
 

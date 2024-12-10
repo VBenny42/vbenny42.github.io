@@ -419,7 +419,7 @@ for the full solution.
 <p>
 My code runs in \(O(n^2)\) time, due to looking for free space blocks that can
 fit the file for each file. I can optimize this by using 10 priority queues to
-store the indices of free space blocks of size <code class="language-plaintext highlighter-rouge">1</code> to <code class="language-plaintext highlighter-rouge">10</code>. This way, I can just
+store the indices of free space blocks of size <code class="language-plaintext highlighter-rouge">0</code> to <code class="language-plaintext highlighter-rouge">9</code>. This way, I can just
 pop the leftmost free space block that can fit the file from one of the priority
 queues. This will reduce the time complexity to \(O(n \log n)\).
 </p>

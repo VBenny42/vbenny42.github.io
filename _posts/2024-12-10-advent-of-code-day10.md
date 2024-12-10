@@ -51,7 +51,7 @@ be up, down, left, or right. For example:
 8.....8
 9.....9</code></pre></div></div>
     </div>
-<figcaption>The one on the left is the topographic map, and the one on the right is the map with the trail marked and irrelevant cells removed.</figcaption>
+<figcaption>The one on the left is the topographic map, and the one on the right is the map with the trails marked and irrelevant cells removed.</figcaption>
 </div>
 
 This map has two trails that start from the singular `0` cell. Each map has a
@@ -148,7 +148,7 @@ Breaking down the function:
 
 - `if position in visited: return` If I have already visited this cell, I
   return. This is because there could be multiple ways to reach from a `9` cell
-  to a `0` cell.
+  to a `0` cell. I only need to find one path for each of the `0` cells.
 - `visited.add(position)` I add the current cell to the visited set.
 - `if position in trailheads: trailheads[position] += 1` If the current cell is
   a `0` cell, I increment the value in the trailheads dictionary.

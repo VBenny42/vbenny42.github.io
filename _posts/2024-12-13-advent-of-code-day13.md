@@ -245,7 +245,9 @@ p_y
 So now, I can solve this system of linear equations in any way I want to find
 the combination of `a` and `b` that will reach the prize location. Also, there
 should only be one solution to this system of linear equations, so the "minimum
-number of tokens" really means just finding the one combination.
+number of tokens" really means just finding the one combination. It's a
+guarantee that the vectors are not scalar multiples of each other, so there can
+only be one solution.
 
 I solve this system of linear equations in my `find_cheapest_combination2`
 function:

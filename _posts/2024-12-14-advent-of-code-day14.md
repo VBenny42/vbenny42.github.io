@@ -88,6 +88,8 @@ After 5 seconds:
 ...........
 ```
 
+---
+
 Given this sample input:
 
 ```
@@ -151,13 +153,13 @@ Let's start with some pseudocode to solve this problem:
 Parsing the input:
 
 ```python
-with open("input.txt", "r") as f:
-	robots = [parse_robot(line.strip().split()) for line in f]
-
 def parse_robot(line: List[str]):
     position = list(map(int, line[0][2:].split(",")))
     velocity = tuple(map(int, line[1][2:].split(",")))
     return [position, velocity]
+
+with open("input.txt", "r") as f:
+	robots = [parse_robot(line.strip().split()) for line in f]
 ```
 
 This function will parse every input line and return a list with the robot's
@@ -199,22 +201,22 @@ the robot is moved, I update the room grid accordingly.
 I made a helper function to get each quadrant of the room:
 
 ```python
-def get_quadrant(room, Quadrant):
+def get_quadrant(room, quadrant):
     rows, cols = len(room), len(room[0])
-    match Quadrant:
-        case Quadrant.TOP_LEFT:
+    match quadrant:
+        case quadrant.TOP_LEFT:
             return [[room[y][x] for x in range(cols // 2)] for y in range(rows // 2)]
-        case Quadrant.TOP_RIGHT:
+        case quadrant.TOP_RIGHT:
             return [
                 [room[y][x] for x in range(cols // 2 + 1, cols)]
                 for y in range(rows // 2)
             ]
-        case Quadrant.BOTTOM_LEFT:
+        case quadrant.BOTTOM_LEFT:
             return [
                 [room[y][x] for x in range(cols // 2)]
                 for y in range(rows // 2 + 1, rows)
             ]
-        case Quadrant.BOTTOM_RIGHT:
+        case quadrant.BOTTOM_RIGHT:
             return [
                 [room[y][x] for x in range(cols // 2 + 1, cols)]
                 for y in range(rows // 2 + 1, rows)
@@ -231,7 +233,8 @@ for quadrant in Quadrants:
 	safety_factor *= num_robots
 ```
 
-Finally, I put everything together in a loop to simulate the robots' movement:
+Finally, I put everything together in a loop to simulate the robots' movement
+after `100` seconds:
 
 ```python
 def main1():
@@ -264,11 +267,13 @@ Christmas tree shape. We need to find the earliest time this will happen.
 ### My Solution
 
 Given that we don't know how many seconds it will take for the robots to form a
-Christmas tree shape, I ran the simulation for `10000` seconds and checked the
-room at every second.
+Christmas tree shape I needed to pick an upper bound to iterate until. I
+submitted `10000` as the answer first on the website, where it was too high, so
+I know my answer appears before `10000` seconds.
 
-I checked the room by creating a bitmap of the room so that I could easily
-glance over the room and see if it formed a Christmas tree shape.
+I checked the room after every second by saving the room as a bitmap, that I
+could quickly look over to find the Christmas tree. I wrote a helper function to
+save the room as a bitmap:
 
 ```python
 def print_bitmap(room, rows, cols, filename):
@@ -307,9 +312,10 @@ def main2():
 </div>
 
 Even though this approach isn't programmatically checking for the Christmas
-tree, it only took me a minute to find the correct bitmap. I then checked the
-time outputted in the filename to find the earliest time the robots formed the
-tree. Here's the tree bitmap in all its glory:
+tree, it only took me a minute to find the correct bitmap because I was able to
+look over about 50 pictures at a time. I then checked the time outputted in the
+filename to find the earliest time the robots formed the tree. Here's the tree
+bitmap in all its glory:
 
 <div class="side-by-side">
 	<div class="toleft">
@@ -326,6 +332,10 @@ tree. Here's the tree bitmap in all its glory:
     <figcaption class="caption">Actual bitmap of the Christmas tree on the left, and the inverted bitmap on the right.</figcaption>
 
 </div>
+
+Today's puzzle was a fun one, and I enjoyed the visual aspect of it. The creator
+must have had a lot of fun designing this puzzle and generating inputs. I'm
+looking forward to the next one!
 
 Again, I've only included the relevant parts of the code here, check out my
 [repository](https://github.com/VBenny42/AoC/blob/main/2024/day14/solution.py)

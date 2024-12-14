@@ -2,8 +2,8 @@
 title: "Advent of Code 2024 Day 2 – Red-Nosed Reports"
 layout: post
 date: 2024-12-02 19:41
-image: /assets/images/favicon/apple-touch-icon.png
-headerImage: false
+image: /assets/images/2024-12-14/christmas_tree_scaled.png
+headerImage: true
 tag:
     - python
     - advent-of-code

@@ -2,8 +2,8 @@
 title: "Advent of Code 2024 Day 4 – Ceres Search"
 layout: post
 date: 2024-12-04 20:29
-image: /assets/images/favicon/apple-touch-icon.png
-headerImage: false
+image: /assets/images/2024-12-14/christmas_tree_scaled.png
+headerImage: true
 tag:
     - python
     - advent-of-code

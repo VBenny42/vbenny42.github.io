@@ -281,7 +281,7 @@ def print_bitmap(room, rows, cols, filename):
 ```
 
 This function will write the room to a file in the
-(PBM)[https://en.wikipedia.org/wiki/Netpbm#PBM_example] format, which just has
+[PBM](https://en.wikipedia.org/wiki/Netpbm#PBM_example) format, which just has
 black and white cells.
 
 Running the simulation:

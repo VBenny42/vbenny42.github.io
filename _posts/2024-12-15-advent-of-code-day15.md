@@ -48,7 +48,7 @@ starting position. Looking at a small example:
 <^^>>>vv<v>>v<<
 ```
 
-<script src="https://asciinema.org/a/1slO9NCY0dphNUHFiqU321FQ3.js" id="asciicast-1slO9NCY0dphNUHFiqU321FQ3" async="true" async data-start-at="2" data-speed="0.3"></script>
+<script src="https://asciinema.org/a/1slO9NCY0dphNUHFiqU321FQ3.js" id="asciicast-1slO9NCY0dphNUHFiqU321FQ3" async="true" async data-start-at="2" data-speed="0.3" data-theme="nord"></script>
 <figcaption class="caption">The robot moving around the warehouse.</figcaption>
 
 In the example above, the final state of the warehouse is:

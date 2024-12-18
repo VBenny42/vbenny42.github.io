@@ -94,7 +94,7 @@ have fallen.
 ### My Solution {#Part1Solution}
 
 To solve this problem, I can use my Dijkstra's algorithm implementation from
-[day 16](https://vbenny.dev/advent-of-code-day16#Part1Solution/). I can use the
+[day 16](https://vbenny.dev/advent-of-code-day16#Part1Solution). I can use the
 same idea of a `graph` where each cell is a node and the edges are the possible
 moves to get to one cell from the other. In this case however, the graph is not
 weighted. Also, my neighbors function needs to be slightly modified, since for

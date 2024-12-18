@@ -72,7 +72,7 @@ times.
 Our puzzle input is a larger maze, but with the same rules. We need to find the
 cost of the shortest path from `S` to `E`.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 This problem is a classic example of a wieghted shortest path problem. To solve
 this I used a modified version of

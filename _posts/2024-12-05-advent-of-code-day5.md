@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 5 solution in Python."
 
 # Day 5: [Print Queue](https://adventofcode.com/2024/day/5)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle is called "Print Queue". The input for today's puzzle is a file
 containing two paragraphs of text, with the first paragraph being ordering
@@ -91,7 +91,7 @@ the correct sequences. So for the example input, the correct sequences are
 `75,47,61,53,29`, `97,61,53,29,13` and `75,29,13`, and the sum of the middle
 numbers is `61 + 53 29 = 143`.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 First, I split the input file into two files, one for each paragraph.
 
@@ -185,7 +185,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, we instead need to find the sum of the middle numbers of the
 _invalid_ updates.
@@ -231,7 +231,7 @@ The incorrect sequences when ordered by the rules are:
 
 Adding the middle numbers of these sequences gives `47 + 29 + 47 = 123`.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 So for part 2, I can reuse the `is_valid1` function from part 1, but instead of
 checking if the update is valid, I can check if it's invalid. Once I find an
@@ -296,7 +296,7 @@ This code loops through each update, checks if it's invalid, and if it is,
 reorders the update according to the rules and adds the middle number to the
 sum.
 
-#### Part 1 revisited
+#### Part 1 revisited {#Part1Revisited}
 
 Once I started using `sorted` to get the valid ordering of the updates, I
 realized that I could use the same approach to solve part 1 as well. Instead of

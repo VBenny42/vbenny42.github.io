@@ -47,7 +47,7 @@ be explaining the problem and my solution to it.
 
 # Day 1: [Historian Hysteria](https://adventofcode.com/2024/day/1)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle is called "Historian Hysteria". The input for today's puzzle is a
 file containing two columns of numbers, each of them representing a list. This
@@ -83,7 +83,7 @@ This sample input is a bit small, so it's easy to do this by hand, but the
 actual input is 1000 lines long in this case, so it's better to solve this
 programmatically.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 First, I split the input file into two files, one for each list. This was done
 using the `V-BLOCK` mode in NeoVim to select the columns and then copy them to
@@ -138,7 +138,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day01/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, using the same input, we need to calculate a total similarity score
 by adding up each number in the left list after multiplying it by the number of
@@ -171,7 +171,7 @@ This was a but unclear to me at first, so let's go through the example.
 So for the example input, the total similarity score is
 `9 + 4 + 0 + 0 + 9 + 9 = 31`.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 So we need to keep track of:
 

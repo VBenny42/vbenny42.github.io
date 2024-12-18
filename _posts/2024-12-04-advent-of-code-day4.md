@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 4 solution in Python."
 
 # Day 4: [Ceres Search](https://adventofcode.com/2024/day/4)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle is called "Ceres Search". The input for today's puzzle is a file
 where it represents a word search where we have to find the word `XMAS`. This is
@@ -59,7 +59,7 @@ S.S.S.S.SS
 
 Our task is to find the number of instances of `XMAS` in the word search.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 For my solution, I went a bit overboard with the code needed, so there are a few
 functions that I will be explaining. But first let's start with the pseudocode
@@ -219,7 +219,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day04/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, instead of finding the word `XMAS`, we have to find instances of two
 `MAS` words in the shape of an `X`. For example,
@@ -249,7 +249,7 @@ M.M.M.M.M.
 There are 9 instances of `X-MAS` appearing in the word search. Notice that the
 instances can overlap, and the `X` can be formed in any direction.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 To solve part 2, my solution is less complex than part 1. Again, let's start
 with the pseudocode:

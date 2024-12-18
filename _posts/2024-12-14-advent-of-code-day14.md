@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 14 solution in Python."
 
 # Day 14: [Restroom Redoubt](https://adventofcode.com/2024/day/14)
 
-## Part 1
+## Part 1 {#Part1}
 
 For today's puzzle, there's a room with robots, and we need to predict their
 movement in the future. Fortunately, our input lists all the robots, with their
@@ -139,7 +139,7 @@ room is `12`.
 Our task is to find the safety factor of a room that is `101` tiles wide and
 `101` tiles tall after `100` seconds.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 Let's start with some pseudocode to solve this problem:
 
@@ -259,12 +259,12 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day14/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, we learn that at some point in the future, the robots will form a
 Christmas tree shape. We need to find the earliest time this will happen.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 Given that we don't know how many seconds it will take for the robots to form a
 Christmas tree shape I needed to pick an upper bound to iterate until. I

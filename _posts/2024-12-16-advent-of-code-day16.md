@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 16 solution in Python."
 
 # Day 16: [Reindeer Maze](https://adventofcode.com/2024/day/16)
 
-## Part 1
+## Part 1 {#Part1}
 
 The puzzle for today is a maze traversal problem. A reindeer starts on the Start
 tile (marked `S`) and needs to make its way to the End tile (marked `E`) with
@@ -286,7 +286,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day16/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, we need to find the number of cells that are on _any_ shortest path
 from the start to the end.
@@ -314,7 +314,7 @@ as `O`:
 
 The number of cells on any of the shortest paths for this example is `45`.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 To solve this problem, my Dijsktra class already stores the paths to all the
 states from the start state. I can use this information to find all the paths

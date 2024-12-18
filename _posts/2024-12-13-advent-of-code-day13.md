@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 13 solution in Python."
 
 # Day 13: [Claw Contraction](https://adventofcode.com/2024/day/13)
 
-## Part 1
+## Part 1 {#Part1}
 
 The situation for today's problem is that we want to play with claw machines in
 an arcade. Each claw machine has two buttons, `A` and `B`, and each button moves
@@ -72,7 +72,7 @@ total of `480` tokens.
 Our task is to find the fewest number of tokens needed to win all the possible
 prizes.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 At first, I thought of solving this problem using dynamic programming. To find
 the minimum number of tokens needed to reach the prize, at each step, I would
@@ -197,7 +197,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day13/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, the prize locations from the input file were recorded wrong due to
 calibration errors! For every prize location we need to add `10000000000000` to
@@ -206,7 +206,7 @@ both the x and y-axes.
 The task remains the same, to find the fewest number of tokens needed to win all
 the possible prizes.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 I tried my DP approach from part 1, but I got recursion depth errors because of
 how large the prize locations were. So I had to come up with a new approach.

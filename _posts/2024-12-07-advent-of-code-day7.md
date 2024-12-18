@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 7 solution in Python."
 
 # Day 7: [Bridge Repair](https://adventofcode.com/2024/day/7)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's input is a list of equations where the operators are missing. An
 equation is of the form `X: Y ... Z`, where `X` is the value and `Y ... Z` could
@@ -57,12 +57,12 @@ We need to sum the values on the left side of the colon for the equations that
 are actually solvable. So for the sample input, the answer is
 `190 + 3267 + 292 = 3749`.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 My solution used a forward recursion approach at first, and then once I had a
 working solution I did a backward recursion approach as well.
 
-#### Forward Recursion
+#### Forward Recursion {#Part1Forward}
 
 Let's start with the pseudocode first:
 
@@ -139,7 +139,7 @@ in as a set of `operator.add` and `operator.mul`.
 This does work, but I'm brute-forcing all the possible combinations of the
 operators to solve the equations. I can find a better way to pick my operators.
 
-#### Backward Recursion
+#### Backward Recursion {#Part1Backward}
 
 Instead of looking at the first two numbers and applying all possible operators
 to them, I can instead look at the last number and the desired value to pick the
@@ -244,7 +244,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day07/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, a new operator is introduced: `||`. This is the concatenation
 operator. It combines the digits of the numbers, so for example `12 || 34` would
@@ -260,9 +260,9 @@ equations are now solvable.
 With these new solvable equations, the new sum of the values on the left side of
 the colon is `11387`.
 
-### My Solution
+### My Solution {#Part2Solution}
 
-#### Forward Recursion
+#### Forward Recursion {#Part2Forward}
 
 My forward recursion approach for part 1 is already set up to handle the new
 operator. I just need to add the new operator to the set of operators.
@@ -286,7 +286,7 @@ I can now add the new operator to the set of operators and call the
 
 Other than this, the rest of the code remains the same.
 
-#### Backward Recursion
+#### Backward Recursion {#Part2Backward}
 
 The backward recursion approach for part 2 is also similar to part 1, but I need
 to add the new operator within the function instead of passing it in.

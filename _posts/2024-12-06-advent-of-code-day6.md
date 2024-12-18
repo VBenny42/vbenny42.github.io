@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 6 solution in Python."
 
 # Day 6: [Guard Gallivant](https://adventofcode.com/2024/day/6)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle is called "Guard Gallivant". The input for today's puzzle is a
 map that has a guard and some obstacles. This is the example input that was
@@ -67,7 +67,7 @@ positions before moving off the map.
 We need to find the number of distinct positions the guard will visit before
 moving off the map, given the input map.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 So to solve this problem, I need to simulate the guard's movement. I can start
 by parsing the input map.
@@ -208,7 +208,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day06/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, we need to count the number of ways we can add a single obstacle, so
 that the guard will be stuck in a loop.
@@ -304,7 +304,7 @@ guard will be stuck in a loop.
 ......#O..
 ```
 
-### My Solution
+### My Solution {#Part2Solution}
 
 To calculate the number of ways we can add an obstacle so that the guard will be
 stuck in a loop, I can add an obstacle to every position on the map, and check

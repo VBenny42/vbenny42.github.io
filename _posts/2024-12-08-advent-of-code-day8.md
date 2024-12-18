@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 8 solution in Python."
 
 # Day 8: [Resonant Collinearity](https://adventofcode.com/2024/day/8)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle was pretty quick! The input was a grid of antennas of different
 frequencies, where each frequency was represented by a single lowercase letter,
@@ -90,7 +90,7 @@ this grid is `14`.
 
 Our task is to find the number of unique antinodes that occur in the grid.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 Let's start with some pseudocode:
 
@@ -202,7 +202,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day08/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, the antinodes can be formed at _any_ point that is perfectly in line
 with a pair of antennas, but the distance between antinodes are still the same
@@ -248,7 +248,7 @@ Now, our task is to find the number of unique antinodes in the grid, now that
 they can be formed at any point that is perfectly in line with a pair of
 antennas.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 The pseudocode for part 2 is very similar to part 1, all I need to do is keep
 checking for antinodes on the line connecting the two antennas until I reach an

@@ -32,7 +32,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 9 solution in Python."
 
 <!--toc:end-->
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's input is a sequence of digits corresponding to a disk map. The example
 input is:
@@ -115,7 +115,7 @@ checksum is `1928`.
 
 We need to calculate the checksum for the compacted input disk map.
 
-### My Solution to Part 1
+### My Solution to Part 1 {#Part1Solution}
 
 A couple things to note about the question:
 
@@ -235,7 +235,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day09/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 In part 2, we still need to compact the disk map as in part 1, but we cannot
 move blocks one at a time. Instead, we need to move the entire file to free
@@ -277,7 +277,7 @@ example input is `2858`.
 We need to calculate the checksum for the compacted disk map as per the new
 rules.
 
-### My Solution to Part 2
+### My Solution to Part 2 {#Part2Solution}
 
 My solution is a bit more complicated than part 1, as now we need to keep track
 of file sizes and free space sizes, and move files to free spaces based on their
@@ -410,7 +410,7 @@ Again, I've only included the relevant parts of the code here, check out my
 [repository](https://github.com/VBenny42/AoC/blob/main/2024/day09/solution.py)
 for the full solution.
 
-#### Update: Optimizations!
+#### Update: Optimizations! {#Part2Update}
 
 <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js">

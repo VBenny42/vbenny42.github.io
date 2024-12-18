@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 15 solution in Python."
 
 # Day 15: [Warehouse Woes](https://adventofcode.com/2024/day/15)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle took me some time to figure out my bugs, but I eventually got it
 working. The puzzle was about simulating a warehouse with a robot that can move
@@ -73,7 +73,7 @@ after the robot has finished moving.
 For the small example above, the sum of the GPS coordinates of all the boxes is
 `2028`.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 I broke down the problem into a few steps:
 
@@ -227,7 +227,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day15/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, there's _another_ warehouse with a robot and boxes. This time, the
 warehouse is twice as wide as part 1's warehouse. Looking at a warehouse:
@@ -279,7 +279,7 @@ position to be used is the left side of the box.
 Our task remains the same, find the sum of the GPS coordinates of all the boxes
 after the robot has finished moving.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 My main logic is the same as in part 1, but my `boxes_to_move` function is a bit
 more complex.

@@ -22,7 +22,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 12 solution in Python."
 
 # Day 12: [Garden Groups](https://adventofcode.com/2024/day/12)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle took me a long time to solve, but I finally got it! The input was
 a map of garden plots, with each letter on the map representing a garden plot
@@ -110,7 +110,7 @@ each of the boundaries with the `X` regions. The perimeter of each `X` region is
 
 So, the task is to calculate the total price of fencing for the given map.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 The first part was pretty straightforward to do:
 
@@ -272,7 +272,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day12/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For the second part of the puzzle, the price of fencing is calculated
 differently. Instead of multiplying the area of the region by its perimeter, we
@@ -343,7 +343,7 @@ actually connected_. So the total price of fencing for the map above is `368`.
 Our task is to calculate the total price of fencing for the given map using the
 number of sides as the multiplier.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 A couple things to note:
 

@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 17 solution in Python."
 
 # Day 17: [Chronospatial Computer](https://adventofcode.com/2024/day/17)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's problem involves a 3-bit computer that can execute a few simple
 instructions. It can run programs where each instruction is a single 3-bit
@@ -88,7 +88,7 @@ Program: 0,1,5,4,3,0
 
 The above program should have the output `4,6,3,5,6,3,5,2,1,0`.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 I need to:
 
@@ -239,7 +239,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day17/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, it turns out that the original program is supposed to output another
 copy of the program! It does not correctly output the program, due to the value
@@ -258,7 +258,7 @@ Program: 0,3,5,4,3,0
 
 If register `A` is instead set to `117440`, the program will output itself.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 This is actually a [quine](https://en.wikipedia.org/wiki/Quine_(computing))
 problem.

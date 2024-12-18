@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 3 solution in Python."
 
 # Day 3: [Mull It Over](https://adventofcode.com/2024/day/3)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle is called "Mull It Over". The input for today's puzzle is a file
 where the lines represent corrupted memory, with uncorrupted instructions and
@@ -38,7 +38,7 @@ instructions: `mul(2,4)`, `mul(5,5)`, `mul(11,8)`, and `mul(8,5)`.
 Our task is to find the sum of the products of the `X` and `Y` values in the
 uncorrupted instructions.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 For my solution, the simplest way that I could think of to extract the
 uncorrupted instructions is to use a regular expression to match the `mul(X,Y)`
@@ -90,7 +90,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day03/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, there are additional instructions in the corrupted memory that we
 need to consider.
@@ -121,7 +121,7 @@ Breaking down the instructions in the example:
 Our task is to find the sum of the products of the `X` and `Y` values in the
 uncorrupted instructions, considering the new conditional instructions.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 To solve part 2, my regex pattern needs to be updated to handle the new
 conditional instructions.

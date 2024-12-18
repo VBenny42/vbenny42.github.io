@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 10 solution in Python."
 
 # Day 10: [Hoof It](https://adventofcode.com/2024/day/10)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle's input is a topographic map, with each cell corresponding to a
 height level, `0` being the lowest and `9` being the highest. For a given map,
@@ -77,7 +77,7 @@ numbers is `36`.
 
 Our task is to find the score of the given map.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 This solution is a simple depth-first search (DFS) algorithm. Let's start by
 parsing the input:
@@ -205,7 +205,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day10/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, the score is calculated differently. The score is the number of
 distinct trails that can be formed by starting from a `0` cell and ending at a
@@ -253,7 +253,7 @@ number of distinct trails that can be formed from each `0` cell: `20`, `24`,
 
 Our task is to find the score of the given map, with the new scoring system.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 My solution for part 2 is part 1's solution with essentially one modification.
 My `find_paths_to_zero_one` function was returning early if it found a cell it

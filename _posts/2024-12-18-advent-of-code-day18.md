@@ -22,7 +22,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 18 solution in Python."
 
 # Day 18: [RAM Run](https://adventofcode.com/2024/day/18)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle involves a grid (yet again) and obstacles that are falling onto
 the grid. Let's look at an example:
@@ -91,7 +91,7 @@ Our goal is to find the length of the shortest path from the top-left corner to
 the bottom right corner of a `71` by `71` grid after the first `1024` obstacles
 have fallen.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 To solve this problem, I can use my Dijkstra's algorithm implementation from
 [day 16](https://vbenny.dev/advent-of-code-day16#Part1Solution/). I can use the
@@ -174,7 +174,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day18/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, eventually as more obstacles fall, there will be no path from the
 top-left corner to the bottom-right corner. We need to find which obstacle is
@@ -211,7 +211,7 @@ be blocked.
 We need to find the first obstacle that causes the bottom-right corner to be
 unreachable for a `71` by `71` grid.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 Again, I can use my `Dijkstra` class to solve this. I know that at least the
 first `1024` obstacles do not cause the exit corner to be unreachable, so I need

@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 2 solution in Python."
 
 # Day 2: [Red-Nosed Reports](https://adventofcode.com/2024/day/2)
 
-## Part 1
+## Part 1 {#Part1}
 
 Today's puzzle is called "Red-Nosed Reports". The input for today's puzzle is a
 file where each line is a sequence of numbers, and the size of the sequence can
@@ -58,7 +58,7 @@ rules:
 - `8 6 4 4 1`: _Unsafe_ because `4 4` is neither an increase or a decrease.
 - `1 3 6 7 9`: _Safe_ because the levels are all increasing by `1`, `2`, or `3`.
 
-### My Solution
+### My Solution {#Part1Solution}
 
 I solved as follows:
 
@@ -150,7 +150,7 @@ I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day02/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For part 2, we can slightly relax the rules for a report to be considered safe.
 
@@ -180,7 +180,7 @@ Determining which reports are safe/unsafe according to the new rules:
   manner.
 - `1 3 6 7 9`: _Safe_ because report was already safe in part 1.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 My solution for part 2 is less work than part 1, as we can reuse the
 `validate_report_1` function from part 1.

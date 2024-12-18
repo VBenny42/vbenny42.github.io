@@ -20,7 +20,7 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 11 solution in Python."
 
 # Day 11: [Plutonian Pebbles](https://adventofcode.com/2024/day/11)
 
-## Part 1
+## Part 1 {#Part1}
 
 The input for today's problem is a list of numbers that represent stones with
 the numbers engraved on them. The stones are changing every time we blink, and
@@ -36,7 +36,8 @@ they change according to the following rules, whichever applies first:
 Their order is preserved, so the stones are always in the same order as they
 were first seen.
 
-## For example, if `5` stones are seen with the arrangement `0 1 10 99 999`, after one blink, the following changes will occur:
+For example, if `5` stones are seen with the arrangement `0 1 10 99 999`, after
+one blink, the following changes will occur:
 
 - The first stone changes to `1`.
 - The second stone gets multiplied by `2024`, so it changes to `2024`.
@@ -75,7 +76,7 @@ After the 6th blink, we have `22` stones, and after `25` blinks, we would have
 Our task is to find the number of stones there would be after `25` blinks from
 the initial input arrangement.
 
-### My Solution
+### My Solution{#Part1Solution}
 
 My pseudocode for this problem is as follows:
 
@@ -149,7 +150,7 @@ As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
 [Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day11/solution.py).
 
-## Part 2
+## Part 2 {#Part2}
 
 For Part 2, we now have to calculate the number of stones after `75` blinks.
 
@@ -157,7 +158,7 @@ I tried running my solution from Part 1 with `75` blinks, but it essentially
 stopped making progress after the 43rd blink. I realized that the number of
 stones was increasing exponentially, so I needed to optimize my solution.
 
-### My Solution
+### My Solution {#Part2Solution}
 
 Some observations I made:
 

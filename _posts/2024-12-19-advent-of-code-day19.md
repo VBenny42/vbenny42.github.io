@@ -70,8 +70,8 @@ find the number of possible designs for the given input.
 ### My Solution {#Part1Solution}
 
 I could solve this problem by using a dynamic programming approach. First I need
-to parse the input and then I can use a recursive function to see if the design
-can be made with the available towels.
+to parse the input and then I write a function to see if the design can be made
+with the available towels.
 
 Reading the input:
 
@@ -87,9 +87,6 @@ def main1():
 
     print(f"ANSWER: { possible_designs = }")
 ```
-
-My `is_possible` function, is my recursive function that will check if the
-design is possible.
 
 ```python
 def is_possible(towels: set[str], design: str) -> bool:

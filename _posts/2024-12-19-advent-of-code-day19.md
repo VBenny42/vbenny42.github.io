@@ -22,8 +22,8 @@ seo_description: "Vinesh Benny's Advent of Code 2024 Day 19 solution in Python."
 
 ## Part 1 {#Part1}
 
-Today's puzzle we're at an [onsen](https://en.wikipedia.org/wiki/Onsen) and to
-gain entry, we need to help arrange some towels.
+For today's puzzle, we're at an [onsen](https://en.wikipedia.org/wiki/Onsen) and
+to gain entry, we need to help arrange some towels.
 
 Every towel has a specific striped pattern, and there are an infinite number of
 each. The towel stripe colors can be white (`w`), blue (`u`), black (`b`), red

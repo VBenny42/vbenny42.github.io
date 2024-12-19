@@ -94,12 +94,12 @@ have fallen.
 ### My Solution {#Part1Solution}
 
 To solve this problem, I can use my Dijkstra's algorithm implementation from
-[day 16](https://vbenny.dev/advent-of-code-day16#Part1Solution). I can use the
-same idea of a `graph` where each cell is a node and the edges are the possible
-moves to get to one cell from the other. In this case however, the graph is not
-weighted. Also, my neighbors function needs to be slightly modified, since for
-day 16 cells could be visited differently depending on direction, for this one
-it doesn't matter.
+[day 16]({{ site.baseurl }}{% link _posts/2024-12-16-advent-of-code-day16.md
+%}#Part1Solution). I can use the same idea of a `graph` where each cell is a
+node and the edges are the possible moves to get to one cell from the other. In
+this case however, the graph is not weighted. Also, my neighbors function needs
+to be slightly modified, since for day 16 cells could be visited differently
+depending on direction, for this one it doesn't matter.
 
 So my only two changes are to the `cost` and `neighbors` functions passed in to
 the `Dijkstra` class.

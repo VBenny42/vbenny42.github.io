@@ -334,17 +334,16 @@ solution was a bit too slow :/.
 Finding the manhattan neighbors:
 
 ```python
-def manhattan_neighbors(coord: Coord, grid_set: set[Coord], cheat_length: int) -> set[Coord]:
-    def all_manhattan_neighbors(coord):
-        possible_neighbors = set()
-        x, y = coord
-        for dx in range(-cheat_length, cheat_length + 1):
-            dy = cheat_length - abs(dx)
-            possible_neighbors.add((x + dx, y + dy))
-            possible_neighbors.add((x + dx, y - dy))
-        return possible_neighbors
-
-    return all_manhattan_neighbors(coord).intersection(grid_set)
+def manhattan_neighbors(
+    coord: Coord, grid_set: set[Coord], cheat_length: int
+) -> set[Coord]:
+    possible_neighbors = set()
+    x, y = coord
+    for dx in range(-cheat_length, cheat_length + 1):
+        dy = cheat_length - abs(dx)
+        possible_neighbors.add((x + dx, y + dy))
+        possible_neighbors.add((x + dx, y - dy))
+    return possible_neighbors.intersection(grid_set)
 ```
 
 `grid_set` is a set of all the cells' coordinates on the grid. I intersect the

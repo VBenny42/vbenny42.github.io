@@ -161,8 +161,8 @@ full solution, you can check out my
 For part 2, we need to find the largest room in the LAN party. This would be the
 largest set of computers that are all interconnected. To get into the room, we
 need a password, which is the the name of every computer in the room, sorted
-alphabetically and concatenated together with commas in between. For example,
-the largest room in the example is
+alphabetically and concatenated together with commas in between. The largest
+room in the example is
 
 ```
 ka-co
@@ -174,6 +174,13 @@ ka-de
 ```
 
 with a size of `4`, and the password for this room would be `co,de,ka,ta`.
+
+<div style="text-align: center;">
+    <img src="../assets/images/2024-12-23/sample-input-graph.png" alt="Computer network visualised" loading="lazy">
+    <div style="margin-bottom: 15px;">
+        <figcaption class="caption">Computer network visualised</figcaption>
+    </div>
+</div>
 
 Our task is to find the password for the largest room in the LAN party.
 

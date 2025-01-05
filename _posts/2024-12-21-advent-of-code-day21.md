@@ -258,7 +258,7 @@ them up.
 
 As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
-[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day21/solution.py).
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day21/solution.py).
 
 ## Part 2 {#Part2}
 
@@ -293,7 +293,7 @@ to wait for an answer, but I knew that my solution was correct as it worked for
 part 1. Caching the results of the function made it run much faster.
 
 Again, I've only included the relevant parts of the code here, check out my
-[repository](https://github.com/VBenny42/AoC/blob/main/2024/day21/solution.py)
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day21/solution.py)
 for the full solution.
 
 ---

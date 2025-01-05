@@ -183,7 +183,7 @@ next section.
 
 I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
-[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py).
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day05/solution.py).
 
 ## Part 2 {#Part2}
 
@@ -314,7 +314,7 @@ the original update. Both ways of solving part 1 are valid, but I found the
 second way to be more elegant.
 
 Again, I've only included the relevant parts of the code here, check out my
-[repository](https://github.com/VBenny42/AoC/blob/main/2024/day05/solution.py)
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day05/solution.py)
 for the full solution.
 
 ---

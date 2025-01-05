@@ -154,7 +154,7 @@ Explanation:
 
 As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
-[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day23/solution.py).
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day23/solution.py).
 
 ## Part 2 {#Part2}
 
@@ -204,7 +204,7 @@ def main2():
 ```
 
 Again, I've only included the relevant parts of the code here, check out my
-[repository](https://github.com/VBenny42/AoC/blob/main/2024/day23/solution.py)
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day23/solution.py)
 for the full solution.
 
 ---

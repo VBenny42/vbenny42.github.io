@@ -148,7 +148,7 @@ def main1():
 
 As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
-[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day11/solution.py).
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day11/solution.py).
 
 ## Part 2 {#Part2}
 
@@ -243,7 +243,7 @@ instead of the stones themselves. This goes to show how important it is to
 utilize different algorithms and data structures for different problems.
 
 Again, I've only included the relevant parts of the code here, check out my
-[repository](https://github.com/VBenny42/AoC/blob/main/2024/day11/solution.py)
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day11/solution.py)
 for the full solution.
 
 ---

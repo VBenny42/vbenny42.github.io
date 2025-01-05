@@ -148,7 +148,7 @@ answer to part 1.
 
 I've only included the relevant parts of the code here, but to see my full
 solution, you can check out my
-[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day02/solution.py).
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day02/solution.py).
 
 ## Part 2 {#Part2}
 

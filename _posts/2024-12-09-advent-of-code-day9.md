@@ -233,7 +233,7 @@ Breaking down the code above:
 
 As always, I've only included the relevant parts of the code here, but to see my
 full solution, you can check out my
-[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/day09/solution.py).
+[Advent of Code GitHub repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day09/solution.py).
 
 ## Part 2 {#Part2}
 
@@ -407,7 +407,7 @@ print(f"LOGF: checksum for contiguous files {checksum(contiguous_diskmap)}")
 ```
 
 Again, I've only included the relevant parts of the code here, check out my
-[repository](https://github.com/VBenny42/AoC/blob/main/2024/day09/solution.py)
+[repository](https://github.com/VBenny42/AoC/blob/main/2024/python/day09/solution.py)
 for the full solution.
 
 #### Update: Optimizations! {#Part2Update}
